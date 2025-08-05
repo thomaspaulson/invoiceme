@@ -21,8 +21,8 @@ services:
       - ".:/application"
     environment:
       - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=todoapp
-      - MYSQL_USER=todoapp
+      - MYSQL_DATABASE=invoiceme
+      - MYSQL_USER=dbuser
       - MYSQL_PASSWORD=secret
     ports:
       - "49003:3306"
