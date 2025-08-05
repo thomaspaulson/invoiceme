@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\Models\Vendor;
+namespace Domain\Models\Vendor;
 
 
 interface VendorRepository

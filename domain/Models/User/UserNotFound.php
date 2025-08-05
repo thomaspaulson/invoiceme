@@ -14,6 +14,6 @@ class UserNotFound extends Exception
     public static function withEmail($email)
     {
         $message = "User not found";
-        return new self($message);
+        return new static($message);
     }
 }

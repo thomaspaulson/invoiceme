@@ -1,16 +1,20 @@
 <?php
 
-namespace App\Infra\Repo;
+namespace Infra\Repo\Vendor;
 
 use App\UseCases\Vendor\ShowVendor\ShowVendorRepository;
 use App\UseCases\Vendor\ShowVendor\Vendor;
+use Domain\Models\Vendor\VendorNotFound;
 use Illuminate\Support\Facades\DB;
 use Domain\Shared\Date;
 
 class ShowVendorOrmRepository implements ShowVendorRepository
 {
-    public function viewVendor(): Vendor
+    public function viewVendor(string $id): Vendor
     {
+
+        $vendor = DB::table('vendors')
+        ->where('id', $id)->first();
 
         if (!$vendor) {
             throw VendorNotFound::withId($id);

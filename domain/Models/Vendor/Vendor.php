@@ -120,16 +120,4 @@ class Vendor
         ];
     }
 
-    // public function data(): array
-    // {
-    //     return [
-    //         'id' => $this->id,
-    //         'firstName' => $this->firstName,
-    //         'lastName' => $this->lastName,
-    //         'email' => $this->email,
-    //         'contact' => $this->contact,
-    //         'address' => $this->address,
-    //     ];
-    // }
-
 }

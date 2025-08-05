@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Infra\Repo;
+namespace Infra\Repo\Vendor;
 
 use App\UseCases\Vendor\ListVendors\VendorListRepository;
 use App\UseCases\Vendor\ListVendors\Vendor;

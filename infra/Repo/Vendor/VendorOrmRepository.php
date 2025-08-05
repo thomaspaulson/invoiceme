@@ -1,6 +1,6 @@
 <?php
 
-namespace Infra\Repo;
+namespace Infra\Repo\Vendor;
 
 use Domain\Models\Vendor\Vendor;
 use Domain\Models\Vendor\VendorNotFound;
@@ -39,8 +39,6 @@ class VendorOrmRepository implements VendorRepository
 
     function getById(string $id): Vendor
     {
-        // return
-
         $vendor = DB::table('vendors')
         ->where('id', $id)->first();
 
@@ -70,8 +68,4 @@ class VendorOrmRepository implements VendorRepository
         }
     }
 
-    // function uuid(): string
-    // {
-    //     return Str::uuid();
-    // }
 }
