@@ -8,7 +8,7 @@ use Domain\Models\Vendor\VendorNotFound;
 use Illuminate\Support\Facades\DB;
 use Domain\Shared\Date;
 
-class ShowVendorOrmRepository implements ShowVendorRepository
+class ShowVendorDbRepository implements ShowVendorRepository
 {
     public function viewVendor(string $id): Vendor
     {

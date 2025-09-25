@@ -4,13 +4,15 @@ namespace App\Providers;
 
 use App\UseCases\Vendor\ListVendors\VendorListRepository;
 use App\UseCases\Vendor\ShowVendor\ShowVendorRepository;
+use Domain\Models\Invoice\InvoiceRepository;
 use Domain\Models\Vendor\VendorRepository;
 use Domain\Shared\Clock;
 use Infra\Lib\ClockUsingSystemClock;
-use Infra\Repo\Vendor\ShowVendorOrmRepository;
-use Infra\Repo\Vendor\VendorListOrmRepository;
-use Infra\Repo\Vendor\VendorOrmRepository;
+use Infra\Repo\Vendor\ShowVendorDbRepository;
+use Infra\Repo\Vendor\VendorListDbRepository;
+use Infra\Repo\Vendor\VendorDbRepository;
 use Illuminate\Support\ServiceProvider;
+use Infra\Repo\Invoice\InvoiceDbRepository;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -21,9 +23,11 @@ class AppServiceProvider extends ServiceProvider
     {
         //
 
-        $this->app->bind(ShowVendorRepository::class, ShowVendorOrmRepository::class);
-        $this->app->bind(VendorListRepository::class, VendorListOrmRepository::class);
-        $this->app->bind(VendorRepository::class, VendorOrmRepository::class);
+        $this->app->bind(ShowVendorRepository::class, ShowVendorDbRepository::class);
+        $this->app->bind(VendorListRepository::class, VendorListDbRepository::class);
+        $this->app->bind(VendorRepository::class, VendorDbRepository::class);
+        $this->app->bind(InvoiceRepository::class, InvoiceDbRepository::class);
+
         $this->app->bind(Clock::class, ClockUsingSystemClock::class);
 
     }

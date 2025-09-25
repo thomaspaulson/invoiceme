@@ -8,7 +8,7 @@ use App\Domain\Models\User\PasswordEncrypted;
 use App\Domain\Models\User\UserNotFound;
 use Illuminate\Support\Facades\DB;
 
-class LoginUserOrmRepository  implements LoginUserRepository
+class LoginUserDbRepository  implements LoginUserRepository
 {
 
     public function getUserByEmail(string $email): User

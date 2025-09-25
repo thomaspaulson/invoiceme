@@ -1,7 +1,6 @@
 ###############################################################################
 #                          Generated on phpdocker.io                          #
 ###############################################################################
-version: "3.1"
 services:
   memcached:
     image: "memcached:alpine"
@@ -18,7 +17,7 @@ services:
     image: "mariadb:11.0"
     working_dir: /application
     volumes:
-      - ".:/application"
+      - "invoice-mariabd:/var/lib/mysql"
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=invoiceme
@@ -42,3 +41,7 @@ services:
     volumes:
       - ".:/application"
       - "./phpdocker/php-fpm/php-ini-overrides.ini:/etc/php/8.2/fpm/conf.d/99-overrides.ini"
+
+volumes:
+    invoice-mariabd:
+        driver: local

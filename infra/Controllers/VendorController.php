@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Infra\Controllers;
+namespace Infra\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\UseCases\Vendor\ShowVendor\ShowVendorService;
@@ -13,8 +13,6 @@ use App\UseCases\Vendor\UpdateVendor\UpdateVendorService;
 use App\UseCases\Vendor\ListVendors\ListVendorService;
 use App\UseCases\Vendor\ListVendors\Vendor;
 use Infra\Lib\ClockUsingSystemClock;
-// use App\Infra\Repo\VendorListOrmRepository;
-// use App\Infra\Repo\VendorOrmRepository;
 use Illuminate\Http\Request;
 
 class VendorController extends Controller
@@ -35,7 +33,7 @@ class VendorController extends Controller
     {
         $vendor = $showVendorService->show($id);
 
-        return $vendor->asArray();
+        return response()->json($vendor->asArray());
     }
 
     public function store(Request $request, CreateVendorService $createVendorService)
@@ -44,7 +42,7 @@ class VendorController extends Controller
         $createVendor = CreateVendor::fromRequestData($request->all());
         $vendorID = $createVendorService->create($createVendor);
 
-        return ['vendorID' => $vendorID];
+        return response()->json(['vendorID' => $vendorID]);
     }
 
     public function update(Request $request, $id, UpdateVendorService $updateVendorService)
@@ -53,7 +51,7 @@ class VendorController extends Controller
         $updateVendor = UpdateVendor::fromRequestData($request->all());
         $vendorID = $updateVendorService->update($updateVendor, $id);
 
-        return ['vendorID' => $vendorID];
+        return  response()->json(['vendorID' => $vendorID]);
 
     }
 
@@ -62,7 +60,7 @@ class VendorController extends Controller
 
         $vendorID = $deleteVendorService->delete($id);
 
-        return ['vendorID' => $vendorID];
+        return response()->json(['vendorID' => $vendorID]);
     }
 
 }

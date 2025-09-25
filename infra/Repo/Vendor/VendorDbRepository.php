@@ -9,7 +9,7 @@ use Domain\Shared\Date;
 use Illuminate\Support\Facades\DB;
 use Infra\Lib\UuidGenerator;
 
-class VendorOrmRepository implements VendorRepository
+class VendorDbRepository implements VendorRepository
 {
     use UuidGenerator;
 

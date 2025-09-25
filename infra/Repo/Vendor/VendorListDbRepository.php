@@ -6,7 +6,7 @@ use App\UseCases\Vendor\ListVendors\VendorListRepository;
 use App\UseCases\Vendor\ListVendors\Vendor;
 use Illuminate\Support\Facades\DB;
 
-class VendorListOrmRepository implements VendorListRepository
+class VendorListDbRepository implements VendorListRepository
 {
     public function listVendors(): array
     {
