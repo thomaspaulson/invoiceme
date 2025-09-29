@@ -19,6 +19,12 @@ class InvoiceDbRepository implements InvoiceRepository
             DB::table('invoices')->insert(
                 $invoice->mappedData()
             );
+
+            DB::table('invoice_items')->insert(
+                $invoice->mappedData()
+            );
+
+
         } catch (\Exception $e) {
             throw $e;
         }

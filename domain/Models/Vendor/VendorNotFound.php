@@ -6,10 +6,10 @@ use Exception;
 
 class VendorNotFound extends Exception
 {
-    // public function __construct($message, $code)
-    // {
-    //     parent::__construct($message, $code);
-    // }
+    private function __construct($message)
+    {
+        parent::__construct($message);
+    }
 
     public static function withId($id)
     {

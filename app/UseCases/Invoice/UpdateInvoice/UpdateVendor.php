@@ -56,9 +56,9 @@ class UpdateVendor
         return $this->address;
     }
 
-    public static function fromRequestData(array $data): self
+    public static function fromRequestData(array $data): static
     {
-        return new self(
+        return new static(
             $data['firstName'],
             $data['lastName'],
             $data['email'],

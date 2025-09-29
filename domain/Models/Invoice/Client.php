@@ -14,4 +14,12 @@ class Client
         $this->address = $address;
         $this->gstin = $gstin;
     }
+
+    public function mappedData(): array {
+        return [
+            'name' => $this->name,
+            'address' => $this->address,
+            'gstin' => $this->gstin
+        ];
+    }
 }
