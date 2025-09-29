@@ -15,7 +15,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->json('client');
             $table->decimal('amount', total: 8, places: 2);
-            $table->decimal('tax', total: 8, places: 2);
+            $table->decimal('tax_amount', total: 8, places: 2);
             $table->decimal('with_tax', total: 8, places: 2);
             $table->string('currency')->unique();
             $table->timestamps();
@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('hsn_code');
             $table->decimal('rate', total: 8, places: 2);
-            $table->decimal('tax', total: 8, places: 2);
+            $table->decimal('tax_amount', total: 8, places: 2);
             $table->decimal('with_tax', total: 8, places: 2);
             $table->string('currency')->unique();
             $table->date("created_at");
