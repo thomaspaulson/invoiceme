@@ -45,15 +45,15 @@ class InvoiceController extends Controller
         return response()->json(['invoiceID' => $invoiceID]);
     }
 
-    // public function update(Request $request, $id, UpdateInvoiceService $updateInvoiceService)
-    // {
+    public function update(Request $request, $id, UpdateInvoiceService $updateInvoiceService)
+    {
 
-    //     $updateInvoice = UpdateInvoice::fromRequestData($request->all());
-    //     $invoiceID = $updateInvoiceService->update($updateInvoice, $id);
+        $updateInvoice = UpdateInvoice::fromRequestData($request->all());
+        $invoiceID = $updateInvoiceService->update($updateInvoice, $id);
 
-    //     return  response()->json(['invoiceID' => $invoiceID]);
+        return  response()->json(['invoiceID' => $invoiceID]);
 
-    // }
+    }
 
     // public function destroy(Request $request, $id, DeleteInvoiceService $deleteInvoiceService)
     // {

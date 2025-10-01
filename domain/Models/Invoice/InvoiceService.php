@@ -4,10 +4,17 @@ namespace Domain\Models\Invoice;
 
 use Domain\Shared\Money;
 use Domain\Shared\Currency;
+use Exception;
+use InvalidArgumentException;
 
 class InvoiceService {
 
     public static function createLineItems(array $items, array $hsnCodes, array $taxCodes): array {
+
+        if (count($items) == 0) {
+            throw new InvalidArgumentException('items can\'t be empty');
+        }
+
         $lineItems = [];
         foreach ($items as $it) {
             $hsnCode = $it['hsn_code'];
