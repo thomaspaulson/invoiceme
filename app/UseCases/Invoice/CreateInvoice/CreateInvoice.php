@@ -14,17 +14,21 @@ class CreateInvoice
 
     private array $items;
 
+    private array $taxes;
+
 
     public function __construct(
         string $name,
         string $address,
         string $gstin,
-        array $items
+        array $items,
+        array $taxes,
     ) {
         $this->name = $name;
         $this->address = $address;
         $this->gstin = $gstin;
         $this->items = $items;
+        $this->taxes = $taxes;
     }
 
 
@@ -48,13 +52,19 @@ class CreateInvoice
         return $this->items;
     }
 
+    public function taxes(): array
+    {
+        return $this->taxes;
+    }
+
     public static function fromRequestData(array $data): static
     {
         return new static(
             $data['name'],
             $data['address'],
             $data['gstin'],
-            $data['items']
+            $data['items'],
+            $data['taxes'],
         );
     }
 }

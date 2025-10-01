@@ -17,14 +17,8 @@ class Invoice
 
     private Currency $currency;
 
-    /* todo */
-    // private Money $total;
+    private array $taxes;
 
-    /* todo */
-    // private Money $tax;
-
-    /* todo */
-    // private Money $withTax;
 
     private Date $created;
 
@@ -52,18 +46,9 @@ class Invoice
 
     }
 
-    // public function addItems(array $items){
-    //     foreach ($items as $it) {
-    //         $unit = Money::fromFloat((float)$it['amount'], new Currency($it['currency'] ?? 'INR'));
-    //         $this->addLineItem(new LineItem($it['id'], $it['name'], $it['hsn_code'], $unit, (int)$it['quantity']));
-    //     }
-
-    //     $this->items[] = $it;
-    // }
-
-    // public function addLineItem(LineItem $it){
-    //     $this->items[] = $it;
-    // }
+    public function setTaxes(array $taxes){
+        $this->taxes = $taxes;
+    }
 
     public function total(): Money {
         $total = new Money(0, $this->currency);
@@ -90,6 +75,11 @@ class Invoice
         return $total;
     }
 
+    public function taxSplit(): array {
+        $amount = $this->taxAmount()->cents() / 2;
+        return array_fill_keys($this->taxes, $amount);
+    }
+
     public static function create(
         string $id,
         Client $client,
@@ -112,15 +102,26 @@ class Invoice
     {
         return [
             'id' => $this->id,
-            'client' => $this->client->mappedData(),
-            'total' => $this->total()->cents(),
+            'client' => json_encode($this->client->mappedData()),
+            'amount' => $this->total()->cents(),
             'tax_amount' => $this->taxAmount()->cents(),
             'with_tax' => $this->withTax()->cents(),
+            "taxes"=> json_encode($this->taxSplit()),
             'currency' => $this->currency->toString(),
-            'items' => array_map(fn($i) => $i->mappedData(), $this->items),
             'created_at' => $this->created->asString(),
             'updated_at' => $this->updated->asString(),
         ];
     }
+
+    public function id(): string
+    {
+        return $this->id;
+    }
+
+    public function items(): array
+    {
+        return array_map(fn($i) => $i->mappedData(), $this->items);
+    }
+
 
 }

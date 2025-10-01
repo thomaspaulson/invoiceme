@@ -16,15 +16,16 @@ class InvoiceDbRepository implements InvoiceRepository
     function create(Invoice $invoice): void
     {
         try {
-            dd($invoice->mappedData());
             DB::table('invoices')->insert(
                 $invoice->mappedData()
             );
+            ['id' => $invoiceId, 'created_at' => $createdAt ] = $invoice->mappedData();
+            $pdo = DB::getPdo();
+            $stmt = $pdo->prepare("INSERT INTO invoice_items (invoice_id, name, hsn_code, quantity, rate, tax_amount, with_tax, currency, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-            DB::table('invoice_items')->insert(
-                $invoice->mappedData()
-            );
-
+            foreach ($invoice->items() as $row) {
+                $stmt->execute([$invoiceId, $row['name'], $row['hsn_code'], $row['quantity'], $row['rate'], $row['tax_amount'], $row['with_tax'], $row['currency'], $createdAt]);
+            }
 
         } catch (\Exception $e) {
             throw $e;

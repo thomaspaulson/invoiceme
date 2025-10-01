@@ -47,6 +47,8 @@ class CreateInvoiceService
             $created,
             $updated
         );
+        $invoice->setTaxes($createInvoice->taxes());
+
         // insert Invoice into db
         $this->invoiceRepo->create($invoice);
 
