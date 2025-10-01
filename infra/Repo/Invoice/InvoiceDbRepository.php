@@ -16,6 +16,7 @@ class InvoiceDbRepository implements InvoiceRepository
     function create(Invoice $invoice): void
     {
         try {
+            dd($invoice->mappedData());
             DB::table('invoices')->insert(
                 $invoice->mappedData()
             );

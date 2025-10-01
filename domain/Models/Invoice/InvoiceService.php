@@ -7,7 +7,7 @@ use Domain\Shared\Currency;
 
 class InvoiceService {
 
-    public static function createLineItems(array $items, array $hsnCodes, array $taxes): array {
+    public static function createLineItems(array $items, array $hsnCodes, array $taxCodes): array {
         $lineItems = [];
         foreach ($items as $it) {
             $hsnCode = $it['hsn_code'];
@@ -15,7 +15,7 @@ class InvoiceService {
                 throw new InvalidHsnCode("Invalid hsn code");
             }
             $taxCode = $hsnCodes[$hsnCode];
-            $tax = $taxes[$taxCode];
+            $tax = $taxCodes[$taxCode];
             $unit = Money::fromFloat((float)$it['amount'], new Currency($it['currency'] ?? 'INR'));
             $lineItems[] = new LineItem($it['id'], $it['name'], $hsnCode, $unit, (int)$it['quantity'], $tax);
         }

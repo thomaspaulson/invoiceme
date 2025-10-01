@@ -24,10 +24,6 @@ final class LineItem
         $this->tax = $tax;
     }
 
-    public function total(): Money {
-        return new Money($this->rate->cents() * $this->quantity, $this->rate->currency());
-    }
-
     public function name(): string {
         return $this->name;
     }
@@ -44,6 +40,9 @@ final class LineItem
         return $this->quantity;
     }
 
+    public function total(): Money {
+        return new Money($this->rate->cents() * $this->quantity, $this->rate->currency());
+    }
 
     public function taxAmount(): Money {
         $taxAmount =  $this->total()->cents() * $this->tax / 100;

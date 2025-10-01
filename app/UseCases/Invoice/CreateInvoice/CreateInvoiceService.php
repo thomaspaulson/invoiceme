@@ -7,6 +7,7 @@ use Domain\Models\Invoice\Invoice;
 use Domain\Models\Invoice\InvoiceRepository;
 use Domain\Models\Invoice\InvoiceService;
 use Domain\Models\Invoice\StoreRepository;
+use Domain\Models\Invoice\TaxRepository;
 use Domain\Shared\Clock;
 use Domain\Shared\Currency;
 use Domain\Shared\Date;
@@ -17,13 +18,13 @@ class CreateInvoiceService
 
     private Clock $clock;
 
-    private StoreRepository $store;
+    private TaxRepository $tax;
 
-    public function __construct(InvoiceRepository $repo, Clock $clock, StoreRepository $store)
+    public function __construct(InvoiceRepository $repo, Clock $clock, TaxRepository $tax)
     {
         $this->invoiceRepo = $repo;
         $this->clock = $clock;
-        $this->store = $store;
+        $this->tax = $tax;
     }
 
     function create(CreateInvoice $createInvoice): string
@@ -35,10 +36,9 @@ class CreateInvoiceService
             $createInvoice->address(),
             $createInvoice->gstin()
         );
-        $storeConfig = $this->store->get();
-        ['hsncodes' => $hsnCodes,'taxes' => $taxes ] = $this->store->get();
 
-        $items = InvoiceService::createLineItems($createInvoice->items(), $hsnCodes, $taxes);
+        ['hsncodes' => $hsnCodes, 'codes' => $taxCodes ] = $this->tax->get();
+        $items = InvoiceService::createLineItems($createInvoice->items(), $hsnCodes, $taxCodes);
         $invoice = Invoice::create(
             $id,
             $client,

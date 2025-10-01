@@ -73,10 +73,10 @@ class Invoice
         return $total;
     }
 
-    public function tax(): Money {
+    public function taxAmount(): Money {
         $total = new Money(0, $this->currency);
         foreach ($this->items as $item) {
-            $total = $total->add($item->tax());
+            $total = $total->add($item->taxAmount());
         }
         return $total;
     }
@@ -113,8 +113,11 @@ class Invoice
         return [
             'id' => $this->id,
             'client' => $this->client->mappedData(),
-            'items' => array_map(fn($i) => $i->mappedData(), $this->items),
+            'total' => $this->total()->cents(),
+            'tax_amount' => $this->taxAmount()->cents(),
+            'with_tax' => $this->withTax()->cents(),
             'currency' => $this->currency->toString(),
+            'items' => array_map(fn($i) => $i->mappedData(), $this->items),
             'created_at' => $this->created->asString(),
             'updated_at' => $this->updated->asString(),
         ];
