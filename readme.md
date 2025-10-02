@@ -1,5 +1,5 @@
 
-docker compose up -d
+## Setting up locally
 
 docker compose run --rm \
     -w /application \
@@ -10,6 +10,13 @@ docker compose run --rm \
     -w /application \
     php-fpm \
     php artisan key:generate
+
+docker compose up -d
+
+To shutdown, run `docker compose down`
+
+
+### if any isssue with file permission
 
 sudo chown -R $USER: .
 
@@ -50,7 +57,3 @@ docker compose run --rm \
     php-fpm \
     php artisan route:list
 
-docker compose run --rm \
-    -w /application \
-    php-fpm \
-    php artisan make:migration create_invoices_table
