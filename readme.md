@@ -23,6 +23,11 @@ docker compose run --rm \
     php-fpm \
     php artisan migrate
 
+docker compose run --rm \
+    -w /application \
+    php-fpm \
+    php artisan migrate:rollback
+
 chmod -R 775 database
 chmod 664 database/database.sqlite
 sudo chown -R $USER:www-data database

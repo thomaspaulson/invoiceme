@@ -59,13 +59,13 @@ final class LineItem
             'id' => $this->id,
             'name' => $this->name,
             'hsn_code' => $this->hsnCode,
-            'rate' => $this->rate->cents(),
-            'currency' => $this->rate->currency()->toString(),
             'quantity' => $this->quantity,
+            'rate' => $this->rate->cents(),
             'total' => $this->total()->cents(),
             'tax' => $this->tax,
             'tax_amount' => $this->taxAmount()->cents(),
             'with_tax' => $this->withTax()->cents(),
+            'currency' => $this->rate->currency()->toString(),
         ];
     }
 

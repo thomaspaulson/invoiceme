@@ -19,7 +19,6 @@ class Invoice
 
     private array $taxes;
 
-
     private Date $created;
 
     private Date $updated;
@@ -44,6 +43,16 @@ class Invoice
         $this->created = $created;
         $this->updated = $updated;
 
+    }
+
+    // public function id(): string
+    // {
+    //     return $this->id;
+    // }
+
+    public function items(): array
+    {
+        return array_map(fn($i) => $i->mappedData(), $this->items);
     }
 
     public function setTaxes(array $taxes){
@@ -98,6 +107,40 @@ class Invoice
        );
     }
 
+    public static function fromDatabase(
+        string $id,
+        Client $client,
+        array $items,
+        Currency $currency,
+        Date $created,
+        Date $updated
+    ): static {
+        $invoice = new static(
+            $id,
+            $client,
+            $items,
+            $currency,
+            $created,
+            $updated
+        );
+        return $invoice;
+    }
+
+
+    public function update(
+        Client $client,
+        array $items,
+        Currency $currency,
+        Date $updated
+    ): void {
+        $this->client = $client;
+        $this->items = $items;
+        $this->currency = $currency;
+        $this->updated = $updated;
+    }
+
+
+
     public function mappedData(): array
     {
         return [
@@ -112,16 +155,5 @@ class Invoice
             'updated_at' => $this->updated->asString(),
         ];
     }
-
-    public function id(): string
-    {
-        return $this->id;
-    }
-
-    public function items(): array
-    {
-        return array_map(fn($i) => $i->mappedData(), $this->items);
-    }
-
 
 }
