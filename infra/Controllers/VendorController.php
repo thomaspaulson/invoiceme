@@ -59,7 +59,6 @@ class VendorController extends Controller
     {
 
         $vendorID = $deleteVendorService->delete($id);
-
         return response()->json(['vendorID' => $vendorID]);
     }
 

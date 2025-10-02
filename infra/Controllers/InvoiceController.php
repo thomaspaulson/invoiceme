@@ -27,38 +27,30 @@ class InvoiceController extends Controller
         );
     }
 
-    // public function show(Request $request, $id, ShowInvoiceService $showInvoiceService)
-    // {
-    //     $invoice = $showInvoiceService->show($id);
-
-    //     return response()->json($invoice->asArray());
-    // }
+    public function show(Request $request, $id, ShowInvoiceService $showInvoiceService)
+    {
+        $invoice = $showInvoiceService->show($id);
+        return response()->json($invoice->asArray());
+    }
 
     public function store(Request $request, CreateInvoiceService $createInvoiceService)
     {
-
         $createInvoice = CreateInvoice::fromRequestData($request->all());
         $invoiceID = $createInvoiceService->create($createInvoice);
-
         return response()->json(['invoiceID' => $invoiceID]);
     }
 
     public function update(Request $request, $id, UpdateInvoiceService $updateInvoiceService)
     {
-
         $updateInvoice = UpdateInvoice::fromRequestData($request->all());
         $invoiceID = $updateInvoiceService->update($updateInvoice, $id);
-
         return  response()->json(['invoiceID' => $invoiceID]);
-
     }
 
-    // public function destroy(Request $request, $id, DeleteInvoiceService $deleteInvoiceService)
-    // {
-
-    //     $invoiceID = $deleteInvoiceService->delete($id);
-
-    //     return response()->json(['invoiceID' => $invoiceID]);
-    // }
+    public function destroy(Request $request, $id, DeleteInvoiceService $deleteInvoiceService)
+    {
+        $invoiceID = $deleteInvoiceService->delete($id);
+        return response()->json(['invoiceID' => $invoiceID]);
+    }
 
 }
