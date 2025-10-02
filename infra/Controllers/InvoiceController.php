@@ -4,7 +4,6 @@ namespace Infra\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\UseCases\Invoice\ShowInvoice\ShowInvoiceService;
-// use App\UseCases\Invoice\ShowInvoice\Invoice as ShowInvoice;
 use App\UseCases\Invoice\CreateInvoice\CreateInvoice;
 use App\UseCases\Invoice\CreateInvoice\CreateInvoiceService;
 use App\UseCases\Invoice\DeleteInvoice\DeleteInvoiceService;
@@ -12,7 +11,6 @@ use App\UseCases\Invoice\UpdateInvoice\UpdateInvoice;
 use App\UseCases\Invoice\UpdateInvoice\UpdateInvoiceService;
 use App\UseCases\Invoice\ListInvoices\ListInvoiceService;
 use App\UseCases\Invoice\ListInvoices\Invoice;
-use Infra\Lib\ClockUsingSystemClock;
 use Illuminate\Http\Request;
 
 class InvoiceController extends Controller

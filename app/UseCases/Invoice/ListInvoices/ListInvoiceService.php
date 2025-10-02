@@ -6,15 +6,10 @@ use App\UseCases\Invoice\ListInvoices\InvoiceListRepository;
 
 class ListInvoiceService
 {
-    // private InvoiceListRepository $invoices;
-
-    public function __construct(private  InvoiceListRepository $invoices)
-    {
-        // $this->invoices = $repo;
+    public function __construct(private  InvoiceListRepository $invoices) {
     }
 
-    function list(): array
-    {
+    function list(): array {
         return $this->invoices->listInvoices();
     }
 }

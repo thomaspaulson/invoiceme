@@ -13,20 +13,12 @@ use Domain\Shared\Date;
 
 class UpdateInvoiceService
 {
-    // private InvoiceRepository $invoiceRepo;
-
-    // private TaxRepository $tax;
-
-    // private Clock $clock;
 
     public function __construct(
         private InvoiceRepository $repo,
         private TaxRepository $tax,
         private Clock $clock
     ) {
-        // $this->invoiceRepo = $repo;
-        // $this->tax = $tax;
-        // $this->clock = $clock;
     }
 
     function update(UpdateInvoice $updateInvoice, string $id): string
