@@ -18,16 +18,14 @@ use Illuminate\Http\Request;
 class InvoiceController extends Controller
 {
 
-    // public function index(Request $request, ListInvoiceService $listInvoiceService)
-    // {
-
-    //     $invoices = $listInvoiceService->list();
-    //     return array_map(
-    //         fn (Invoice $invoice) => $invoice->asArray(),
-    //         $invoices
-    //     );
-
-    // }
+    public function index(Request $request, ListInvoiceService $listInvoiceService)
+    {
+        $invoices = $listInvoiceService->list();
+        return array_map(
+            fn (Invoice $invoice) => $invoice->asArray(),
+            $invoices
+        );
+    }
 
     // public function show(Request $request, $id, ShowInvoiceService $showInvoiceService)
     // {
