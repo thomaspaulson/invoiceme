@@ -14,17 +14,20 @@ use Domain\Shared\Date;
 
 class CreateInvoiceService
 {
-    private InvoiceRepository $invoiceRepo;
+    // private InvoiceRepository $invoiceRepo;
 
-    private Clock $clock;
+    // private Clock $clock;
 
-    private TaxRepository $tax;
+    // private TaxRepository $tax;
 
-    public function __construct(InvoiceRepository $repo, Clock $clock, TaxRepository $tax)
+    public function __construct(
+        private InvoiceRepository $invoiceRepo,
+        private Clock $clock,
+        private TaxRepository $tax)
     {
-        $this->invoiceRepo = $repo;
-        $this->clock = $clock;
-        $this->tax = $tax;
+        // $this->invoiceRepo = $repo;
+        // $this->clock = $clock;
+        // $this->tax = $tax;
     }
 
     function create(CreateInvoice $createInvoice): string

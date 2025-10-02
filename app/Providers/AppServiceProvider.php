@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\UseCases\Invoice\ListInvoices\InvoiceListRepository;
+use App\UseCases\Invoice\ShowInvoice\ShowInvoiceRepository;
 use App\UseCases\Vendor\ListVendors\VendorListRepository;
 use App\UseCases\Vendor\ShowVendor\ShowVendorRepository;
 use Domain\Models\Invoice\InvoiceRepository;
@@ -15,10 +16,12 @@ use Infra\Lib\StoreConfigRepository;
 use Infra\Lib\TaxConfigRepository;
 use Infra\Repo\Invoice\InvoiceDbRepository;
 use Infra\Repo\Invoice\InvoiceListDbRepository;
+use Infra\Repo\Invoice\ShowInvoiceDbRepository;
 use Infra\Repo\Vendor\ShowVendorDbRepository;
 use Infra\Repo\Vendor\VendorListDbRepository;
 use Infra\Repo\Vendor\VendorDbRepository;
 use Illuminate\Support\ServiceProvider;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -36,6 +39,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(StoreRepository::class, StoreConfigRepository::class);
         $this->app->bind(TaxRepository::class, TaxConfigRepository::class);
         $this->app->bind(InvoiceListRepository::class, InvoiceListDbRepository::class);
+        $this->app->bind(ShowInvoiceRepository::class, ShowInvoiceDbRepository::class);
 
         $this->app->bind(Clock::class, ClockUsingSystemClock::class);
 
