@@ -15,6 +15,7 @@ class Client
         $this->gstin = $gstin;
     }
 
+
     public function mappedData(): array {
         return [
             'name' => $this->name,

@@ -40,4 +40,8 @@ final class Money
     public function toFloat(): float {
         return round($this->cents / 100.0, 2);
     }
+
+    public function format(): string {
+        return sprintf("%s %s", $this->toFloat(), $this->currency()->toString());
+    }
 }
