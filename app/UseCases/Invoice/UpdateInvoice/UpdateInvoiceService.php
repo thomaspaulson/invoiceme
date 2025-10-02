@@ -33,6 +33,7 @@ class UpdateInvoiceService
     {
         $updated = Date::fromCurrentTime($this->clock->currentTime());
         $invoice = $this->repo->getById($id);
+        $invoice->setTaxes($updateInvoice->taxes());
 
         $client = new Client(
             $updateInvoice->name(),

@@ -29,6 +29,8 @@ return new class extends Migration
             $table->string('hsn_code');
             $table->integer('quantity');
             $table->decimal('rate', total: 8, places: 2);
+            $table->decimal('total', total: 8, places: 2);
+            $table->integer('tax');
             $table->decimal('tax_amount', total: 8, places: 2);
             $table->decimal('with_tax', total: 8, places: 2);
             $table->string('currency');
