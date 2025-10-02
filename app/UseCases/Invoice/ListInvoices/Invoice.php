@@ -8,11 +8,6 @@ use Domain\Shared\Money;
 
 class Invoice
 {
-    // private string $id;
-    // private Client $cli;
-    // private Money $total;
-    // private Date $created;
-    // private Date $updated;
 
     public function __construct(
         private string $id,
@@ -20,12 +15,6 @@ class Invoice
         private Money $total,
         private Date $createdAt
     ) {
-        // $this->id = $id;
-        // $this->firstName = $firstName;
-        // $this->lastName = $lastName;
-        // $this->email = $email;
-        // $this->contact = $contact;
-        // $this->address = $address;
     }
 
     public function id(): string
