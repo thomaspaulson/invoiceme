@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types=1);
 namespace App\UseCases\Invoice\UpdateInvoice;
 
 use Domain\Models\Invoice\Client;

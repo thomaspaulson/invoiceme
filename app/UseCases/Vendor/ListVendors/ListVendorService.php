@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types=1);
 namespace App\UseCases\Vendor\ListVendors;
 
 use App\UseCases\Vendor\ListVendors\VendorListRepository;

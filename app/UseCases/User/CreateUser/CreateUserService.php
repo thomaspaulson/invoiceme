@@ -1,12 +1,12 @@
 <?php
+declare(strict_types=1);
+namespace App\UseCases\User\CreateUser;
 
-namespace App\Application\UseCases\User\CreateUser;
-
-use App\Domain\Models\User\Hashing;
-use App\Domain\Models\User\User;
-use App\Domain\Models\User\UserRepository;
-use App\Domain\Shared\Clock;
-use App\Domain\Shared\Date;
+use Domain\Models\User\Hashing;
+use Domain\Models\User\User;
+use Domain\Models\User\UserRepository;
+use Domain\Shared\Clock;
+use Domain\Shared\Date;
 
 class CreateUserService
 {

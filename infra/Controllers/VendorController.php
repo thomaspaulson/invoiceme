@@ -14,6 +14,7 @@ use App\UseCases\Vendor\ListVendors\ListVendorService;
 use App\UseCases\Vendor\ListVendors\Vendor;
 use Infra\Lib\ClockUsingSystemClock;
 use Illuminate\Http\Request;
+use Infra\Requests\Vendor\CreateVendorRequest;
 
 class VendorController extends Controller
 {
@@ -36,7 +37,7 @@ class VendorController extends Controller
         return response()->json($vendor->asArray());
     }
 
-    public function store(Request $request, CreateVendorService $createVendorService)
+    public function store(CreateVendorRequest $request, CreateVendorService $createVendorService)
     {
 
         $createVendor = CreateVendor::fromRequestData($request->all());

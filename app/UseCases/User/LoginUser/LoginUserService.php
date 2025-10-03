@@ -1,9 +1,9 @@
 <?php
+declare(strict_types=1);
+namespace App\UseCases\User\LoginUser;
 
-namespace App\Application\UseCases\User\LoginUser;
-
-use App\Domain\Models\User\Hashing;
-use App\Domain\Models\User\UserNotFound;
+use Domain\Models\User\Hashing;
+use Domain\Models\User\UserNotFound;
 
 class LoginUserService
 {

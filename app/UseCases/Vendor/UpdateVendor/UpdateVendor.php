@@ -1,11 +1,10 @@
 <?php
-
+declare(strict_types=1);
 namespace App\UseCases\Vendor\UpdateVendor;
-
 
 class UpdateVendor
 {
-
+    //
     private string $firstName;
 
     private string $lastName;

@@ -1,6 +1,6 @@
 <?php
-
-namespace App\Application\UseCases\User\LoginUser;
+declare(strict_types=1);
+namespace App\UseCases\User\LoginUser;
 
 interface LoginUserRepository
 {
