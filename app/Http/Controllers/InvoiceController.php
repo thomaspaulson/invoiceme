@@ -1,8 +1,7 @@
 <?php
 
-namespace Infra\Controllers;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\UseCases\Invoice\ShowInvoice\ShowInvoiceService;
 use App\UseCases\Invoice\CreateInvoice\CreateInvoice;
 use App\UseCases\Invoice\CreateInvoice\CreateInvoiceService;
