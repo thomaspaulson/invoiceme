@@ -71,3 +71,13 @@ docker compose run --rm \
     -w /application \
     php-fpm \
     php artisan optimize:clear
+
+docker compose run --rm \
+    -w /application \
+    php-fpm \
+    php artisan make:queue-table
+
+docker compose run --rm \
+    -w /application \
+    php-fpm \
+    php artisan queue:work
