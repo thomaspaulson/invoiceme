@@ -57,3 +57,8 @@ docker compose run --rm \
     php-fpm \
     php artisan route:list
 
+
+docker compose run --rm \
+    -w /application \
+    php-fpm \
+    sh

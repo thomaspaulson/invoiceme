@@ -3,7 +3,6 @@ declare(strict_types=1);
 namespace App\UseCases\User\LoginUser;
 
 use Domain\Models\User\Hashing;
-use Domain\Models\User\UserNotFound;
 
 class LoginUserService
 {

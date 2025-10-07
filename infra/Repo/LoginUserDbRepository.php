@@ -2,10 +2,10 @@
 
 namespace App\Infra\Repo;
 
-use App\Application\UseCases\User\LoginUser\LoginUserRepository;
-use App\Application\UseCases\User\LoginUser\User;
-use App\Domain\Models\User\PasswordEncrypted;
-use App\Domain\Models\User\UserNotFound;
+use App\UseCases\User\LoginUser\LoginUserRepository;
+use App\UseCases\User\LoginUser\User;
+use Domain\Models\User\PasswordEncrypted;
+use Domain\Models\User\UserNotFound;
 use Illuminate\Support\Facades\DB;
 
 class LoginUserDbRepository  implements LoginUserRepository
