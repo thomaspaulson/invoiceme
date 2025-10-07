@@ -11,13 +11,15 @@ use Domain\Models\Invoice\TaxRepository;
 use Domain\Shared\Clock;
 use Domain\Shared\Currency;
 use Domain\Shared\Date;
+use Psr\EventDispatcher\EventDispatcherInterface;
 
 class CreateInvoiceService
 {
     public function __construct(
         private InvoiceRepository $invoiceRepo,
         private Clock $clock,
-        private TaxRepository $tax
+        private TaxRepository $tax,
+        private EventDispatcherInterface $eventDispatcher
     ) {
     }
 

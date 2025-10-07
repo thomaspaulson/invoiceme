@@ -24,7 +24,6 @@ chmod -R 775 storage bootstrap/cache
 
 sudo  chown -R $USER:www-data storage bootstrap/cache
 
-
 docker compose run --rm \
     -w /application \
     php-fpm \
@@ -62,3 +61,23 @@ docker compose run --rm \
     -w /application \
     php-fpm \
     sh
+
+docker compose run --rm \
+    -w /application \
+    php-fpm \
+    php artisan make:provider PsrEventServiceProvider
+
+docker compose run --rm \
+    -w /application \
+    php-fpm \
+    php artisan optimize:clear
+
+docker compose run --rm \
+    -w /application \
+    php-fpm \
+    php artisan make:queue-table
+
+docker compose run --rm \
+    -w /application \
+    php-fpm \
+    php artisan queue:work
