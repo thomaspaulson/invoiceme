@@ -77,7 +77,12 @@ docker compose run --rm \
     php-fpm \
     php artisan make:queue-table
 
+
+## Events
+
 docker compose run --rm \
     -w /application \
     php-fpm \
+    sh
+
     php artisan queue:work
