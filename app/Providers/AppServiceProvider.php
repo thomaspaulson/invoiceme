@@ -41,6 +41,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(InvoiceListRepository::class, InvoiceListDbRepository::class);
         $this->app->bind(ShowInvoiceRepository::class, ShowInvoiceDbRepository::class);
 
+
         $this->app->bind(Clock::class, ClockUsingSystemClock::class);
 
     }
