@@ -1,9 +1,9 @@
 <?php
 
-namespace Infra\Requests;
+namespace App\Http\Requests;
 
 
-class UserRegisterRequest extends ApiRequest
+class UserRegisterRequest
 {
     /**
      * Determine if the user is authorized to make this request.

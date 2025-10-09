@@ -1,10 +1,8 @@
 <?php
 
-namespace Infra\Controllers;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\UseCases\Vendor\ShowVendor\ShowVendorService;
-// use App\UseCases\Vendor\ShowVendor\Vendor as ShowVendor;
 use App\UseCases\Vendor\CreateVendor\CreateVendor;
 use App\UseCases\Vendor\CreateVendor\CreateVendorService;
 use App\UseCases\Vendor\DeleteVendor\DeleteVendorService;
@@ -12,9 +10,8 @@ use App\UseCases\Vendor\UpdateVendor\UpdateVendor;
 use App\UseCases\Vendor\UpdateVendor\UpdateVendorService;
 use App\UseCases\Vendor\ListVendors\ListVendorService;
 use App\UseCases\Vendor\ListVendors\Vendor;
-use Infra\Lib\ClockUsingSystemClock;
 use Illuminate\Http\Request;
-use Infra\Requests\Vendor\CreateVendorRequest;
+use App\Http\Requests\Vendor\CreateVendorRequest;
 
 class VendorController extends Controller
 {

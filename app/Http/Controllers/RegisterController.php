@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Infra\Controllers;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Infra\Repo\UserOrmRepository;
-use App\Infra\Requests\UserRegisterRequest;
-use App\Application\UseCases\User\CreateUser\CreateUser;
-use App\Application\UseCases\User\CreateUser\CreateUserService;
-use App\Infra\Lib\ClockUsingSystemClock;
-use App\Infra\Lib\HashingService;
+use Infra\Repo\UserDbRepository;
+use App\Http\Requests\UserRegisterRequest;
+use App\UseCases\User\CreateUser\CreateUser;
+use App\UseCases\User\CreateUser\CreateUserService;
+use Infra\Lib\ClockUsingSystemClock;
+use Infra\Lib\HashingService;
 use App\Models\User;
 
 class RegisterController extends Controller
@@ -17,7 +16,7 @@ class RegisterController extends Controller
     {
         $createUser = CreateUser::fromRequestData($request->all());
         $userId = (new CreateUserService(
-            new UserOrmRepository(),
+            new UserDbRepository(),
             new HashingService(),
             new ClockUsingSystemClock()
         ))

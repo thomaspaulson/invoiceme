@@ -3,10 +3,10 @@
 use Domain\Models\Invoice\InvoiceCreated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Infra\Controllers\RegisterController;
-use Infra\Controllers\LoginController;
-use Infra\Controllers\VendorController;
-use Infra\Controllers\InvoiceController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\VendorController;
+use App\Http\Controllers\InvoiceController;
 use Psr\EventDispatcher\EventDispatcherInterface;
 
 Route::get('/user', function (Request $request) {

@@ -1,15 +1,14 @@
 <?php
 
-namespace App\Infra\Controllers;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use Infra\Requests\UserLoginRequest;
+use App\Http\Requests\UserLoginRequest;
 use App\UseCases\User\LoginUser\LoginUser;
 use App\UseCases\User\LoginUser\LoginUserService;
-use App\Domain\Models\User\InvalidPassword;
-use App\Domain\Models\User\UserNotFound;
+use Domain\Models\User\InvalidPassword;
+use Domain\Models\User\UserNotFound;
 use Infra\Lib\HashingService;
-use Infra\Repo\LoginUserOrmRepository;
+use Infra\Repo\LoginUserDbRepository;
 use App\Models\User;
 
 class LoginController extends Controller
@@ -18,7 +17,7 @@ class LoginController extends Controller
     {
         try {
             $loginUser = LoginUser::fromRequestData($request->all());
-            $user = (new LoginUserService(new LoginUserOrmRepository(), new HashingService()))
+            $user = (new LoginUserService(new LoginUserDbRepository(), new HashingService()))
                 ->login($loginUser);
 
             if (!$user) {

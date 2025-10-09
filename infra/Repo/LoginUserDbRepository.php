@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Infra\Repo;
+namespace Infra\Repo;
 
 use App\UseCases\User\LoginUser\LoginUserRepository;
 use App\UseCases\User\LoginUser\User;

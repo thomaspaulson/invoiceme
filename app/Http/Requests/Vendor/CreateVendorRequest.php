@@ -1,10 +1,10 @@
 <?php
 
-namespace Infra\Requests\Vendor;
+namespace App\Http\Requests\Vendor;
 
-use Infra\Requests\ApiRequest;
+use App\Http\Requests\ApiRequest;
 
-class CreateVendorRequest extends ApiRequest
+class CreateVendorRequest
 {
     /**
      * Determine if the user is authorized to make this request.

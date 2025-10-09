@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Infra\Repo;
+namespace Infra\Repo;
 
-use App\Domain\Models\User\User;
-use App\Domain\Models\User\UserRepository;
+use Domain\Models\User\User;
+use Domain\Models\User\UserRepository;
 use Illuminate\Support\Facades\DB;
-use App\Infra\Lib\UuidGenerator;
+use Infra\Lib\UuidGenerator;
 
 class UserDbRepository implements UserRepository
 {
