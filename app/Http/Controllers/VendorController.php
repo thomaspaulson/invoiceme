@@ -11,7 +11,7 @@ use App\UseCases\Vendor\UpdateVendor\UpdateVendorService;
 use App\UseCases\Vendor\ListVendors\ListVendorService;
 use App\UseCases\Vendor\ListVendors\Vendor;
 use Illuminate\Http\Request;
-use Infra\Requests\Vendor\CreateVendorRequest;
+use App\Http\Requests\Vendor\CreateVendorRequest;
 
 class VendorController extends Controller
 {

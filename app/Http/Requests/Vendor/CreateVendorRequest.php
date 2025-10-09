@@ -4,7 +4,7 @@ namespace App\Http\Requests\Vendor;
 
 use App\Http\Requests\ApiRequest;
 
-class CreateVendorRequest extends ApiRequest
+class CreateVendorRequest
 {
     /**
      * Determine if the user is authorized to make this request.

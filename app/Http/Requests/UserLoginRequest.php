@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 
-class UserLoginRequest extends ApiRequest
+class UserLoginRequest
 {
     /**
      * Determine if the user is authorized to make this request.
