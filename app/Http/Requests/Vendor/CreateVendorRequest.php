@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests\Vendor;
 
-use App\Http\Requests\ApiRequest;
+use Illuminate\Foundation\Http\FormRequest;
 
-class CreateVendorRequest
+class CreateVendorRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
