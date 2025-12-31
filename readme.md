@@ -1,88 +1,15 @@
 
-## Setting up locally
+## About InvoiceMe
 
-docker compose run --rm \
-    -w /application \
-    php-fpm \
-    composer install
-
-docker compose run --rm \
-    -w /application \
-    php-fpm \
-    php artisan key:generate
-
-docker compose up -d
-
-To shutdown, run `docker compose down`
+Invoice Me is used for invoicing gst bill for small/medium  business like limecoke.com
 
 
-### if any isssue with file permission
-
-sudo chown -R $USER: .
-
-chmod -R 775 storage bootstrap/cache
-
-sudo  chown -R $USER:www-data storage bootstrap/cache
-
-docker compose run --rm \
-    -w /application \
-    php-fpm \
-    php artisan migrate
-
-docker compose run --rm \
-    -w /application \
-    php-fpm \
-    php artisan migrate:rollback
-
-chmod -R 775 database
-chmod 664 database/database.sqlite
-sudo chown -R $USER:www-data database
+For more details, visit [invoice.limecoke.com](https://invoice.limecoke.com)
 
 
-docker compose down -v
+### Documentation
 
-docker compose run --rm \
-    -w /application \
-    php-fpm \
-    php artisan make:migration create_invoices_table
-
-docker compose run --rm \
-    -w /application \
-    php-fpm \
-    php artisan install:api
-
-docker compose run --rm \
-    -w /application \
-    php-fpm \
-    php artisan route:list
-
-
-docker compose run --rm \
-    -w /application \
-    php-fpm \
-    sh
-
-docker compose run --rm \
-    -w /application \
-    php-fpm \
-    php artisan make:provider PsrEventServiceProvider
-
-docker compose run --rm \
-    -w /application \
-    php-fpm \
-    php artisan optimize:clear
-
-docker compose run --rm \
-    -w /application \
-    php-fpm \
-    php artisan make:queue-table
-
-docker compose run --rm \
-    -w /application \
-    php-fpm \
-    php artisan queue:work
-
-
-## frontend - asset building
-
-https://laravel.com/docs/12.x/vite
+- **[Architecture](./docs/architecture.md)**
+- **[Code versioning](./docs/branching.md)**
+- **[How to set locally](./docs/how-to-setup-locally.md)**
+- **[Notes](./docs/notes.md)**
