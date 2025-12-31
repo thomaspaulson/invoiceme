@@ -13,8 +13,8 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-// Route::post('/register', [RegisterController::class, 'index']);
-// Route::post('/login', [LoginController::class, 'index']);
+Route::post('/register', [RegisterController::class, 'index']);
+Route::post('/login', [LoginController::class, 'index']);
 Route::resource('/vendor', VendorController::class);
 Route::resource('/invoice', InvoiceController::class);
 

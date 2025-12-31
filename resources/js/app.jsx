@@ -1,9 +1,22 @@
 import '../css/app.css';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Dashboard from './pages/Dashboard';
 
 function App() {
-    return <h1 className="text-3xl font-bold underline text-red-500">Hello from React + Laravel 12!</h1>;
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="*" element={<Navigate to="/login" />} />
+            </Routes>
+        </BrowserRouter>
+    );
 }
 
 ReactDOM.createRoot(document.getElementById('app')).render(<App />);
