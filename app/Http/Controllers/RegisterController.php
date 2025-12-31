@@ -16,11 +16,11 @@ class RegisterController extends Controller
     {
         $createUser = CreateUser::fromRequestData($request->all());
         $userId = (new CreateUserService(
-            new UserDbRepository(),
-            new HashingService(),
-            new ClockUsingSystemClock()
-        ))
-            ->create($createUser);
+                    new UserDbRepository(),
+                    new HashingService(),
+                    new ClockUsingSystemClock()
+                ))
+                ->create($createUser);
         $token = User::find($userId)->createToken(time());
         return ['token' => $token->plainTextToken];
     }
