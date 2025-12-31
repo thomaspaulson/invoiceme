@@ -81,3 +81,8 @@ docker compose run --rm \
     -w /application \
     php-fpm \
     php artisan queue:work
+
+
+## frontend - asset building
+
+https://laravel.com/docs/12.x/vite
