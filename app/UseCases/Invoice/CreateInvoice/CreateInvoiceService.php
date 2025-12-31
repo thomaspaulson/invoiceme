@@ -26,7 +26,7 @@ class CreateInvoiceService
     function create(CreateInvoice $createInvoice): string
     {
         $id = $this->invoiceRepo->uuid();
-        $created = $updated = Date::fromCurrentTime($this->clock->currentTime());
+        $date = Date::fromCurrentTime($this->clock->currentTime());
         $client = new Client(
             $createInvoice->name(),
             $createInvoice->address(),
@@ -40,8 +40,8 @@ class CreateInvoiceService
             $client,
             $items,
             new Currency('INR'),
-            $created,
-            $updated
+            $date,
+            $date
         );
         $invoice->setTaxes($createInvoice->taxes());
 
