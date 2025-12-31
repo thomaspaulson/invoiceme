@@ -13,6 +13,13 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
+Route::middleware('auth:sanctum')->group(function () {
+    // logout
+    Route::post('/logout', function (Request $request) {
+        $request->user()->currentAccessToken()->delete(); // Revoke the current token
+        return response()->noContent();
+    });
+});
 Route::post('/register', [RegisterController::class, 'index']);
 Route::post('/login', [LoginController::class, 'index']);
 Route::resource('/vendor', VendorController::class);

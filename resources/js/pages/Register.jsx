@@ -12,8 +12,7 @@ export default function Register() {
     e.preventDefault();
 
     try {
-      // await axios.get('/sanctum/csrf-cookie');
-      const response = await axios.post('/api/register', { name, email, password });
+      const response = await axios.post('/register', { name, email, password });
       localStorage.setItem('token', response.data.token);
       navigate('/dashboard');
     } catch (error) {

@@ -1,16 +1,17 @@
 import axios from 'axios';
 
-axios.defaults.withCredentials = true;
-axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+// axios.defaults.withCredentials = true;
+// axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
-axios.create({
+const api = axios.create({
   baseURL: '/api',
 });
 
 // 🔐 Attach token to every request
-axios.interceptors.request.use(
+api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token');
+
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -20,4 +21,4 @@ axios.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-export default axios;
+export default api;
