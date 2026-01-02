@@ -34,7 +34,6 @@ const login = onSuccess => async (credentials) => {
 const logout = onLogout => async () => {
   try {
     await api.post('/logout');
-    localStorage.removeItem('token');
     // update auth state
     onLogout(null);
   } catch (error) {
