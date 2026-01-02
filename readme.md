@@ -9,7 +9,6 @@ Developed based on Domain-Driven Design DDD approach with scalable & decoupled a
 For more details, visit [invoice.limecoke.com](https://invoice.limecoke.com)
 -->
 
-
 ### Documentation
 
 - **[Architecture](./docs/architecture.md)**

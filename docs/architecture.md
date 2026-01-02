@@ -5,17 +5,18 @@
 Invoiceme Portal is sub-divided into `front-end` and `back-end` module. The stack details are mentioned below.
 
 ## Front-end
-We are using Vue.js library for the front-end, by utilizing a template called `Vuexy`. You can find the latest documentation [here](https://pixinvent.com/demo/vuexy-vuejs-admin-dashboard-template/documentation/).
+We are using react.js library for the front-end, by utilizing  `vite`.
+
 
 | Technology | Version |
 | --- | ----------- |
-| Vue.js | 2.* |
+| react.js | 19.* |
 
 ## Back-end
 
 | Technology | Version |
 | --- | ----------- |
-| Laravel | 8.x |
+| Laravel | 12.x |
 
 ## PROD & DEV Environments
 
@@ -31,8 +32,8 @@ We are using `Laravel Forge` to configure and deploy the changes to the PROD and
 The server is been configured using the `LEMP` stack
 - `L` - Linux (Ubuntu 20)
 - `E` - Nginx (Web server)
-- `M` - MySQL 8.* (Database)
-- `P` - PHP 7.4.*
+- `M` - Mariadb 11.* (Database)
+- `P` - PHP 8.2.*
 
 ## Others
 
