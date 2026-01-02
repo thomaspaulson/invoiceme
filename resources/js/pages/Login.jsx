@@ -1,7 +1,7 @@
 import axios from '../api/axios';
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../contexts/AuthContext';
 
 
 export default function Login() {

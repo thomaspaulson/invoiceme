@@ -1,15 +1,12 @@
-import axios from '../api/axios';
-// import { useEffect, useState } from 'react';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../contexts/AuthContext';
 
 
 export default function Dashboard() {
-  // const [user, setUser] = useState(null);
-
   const { user, logout } = useAuth();
 
   async function handleLogout() {
     await logout();
+    localStorage.removeItem('token');
   }
   return (
     <div className="p-10">

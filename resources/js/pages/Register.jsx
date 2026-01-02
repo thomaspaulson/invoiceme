@@ -16,8 +16,13 @@ export default function Register() {
       localStorage.setItem('token', response.data.token);
       navigate('/dashboard');
     } catch (error) {
-      console.log(error);
-      console.log(error.response.data);
+      // console.log(result.errors);
+      // if (result.errors) {
+      //   setErrors(result.errors);
+      // } else {
+      //   setGeneralError(result.message);
+      // }
+
     }
 
 
