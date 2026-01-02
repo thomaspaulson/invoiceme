@@ -1,6 +1,6 @@
-import axios from '../api/axios';
+// import axios from '../api/axios';
 // import { useEffect, useState } from 'react';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../contexts/AuthContext';
 
 
 export default function Dashboard() {

@@ -5,11 +5,7 @@ Invoice Me is used for invoicing gst bill for small/medium  business like limeco
 
 Developed based on Domain-Driven Design approach with scalable & decoupled architecture.
 
-
-
-
 For more details, visit [invoice.limecoke.com](https://invoice.limecoke.com)
-
 
 ### Documentation
 
