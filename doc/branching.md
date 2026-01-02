@@ -14,21 +14,34 @@ Feature branches are generally created off to the latest develop branch. When yo
 
 **Some usefull gist**
 
-git push -d <remote_name> <branch--name>   # Delete remote
+git push -d <remote_name> <branch--name>        # Delete remote
 
 eg `git push -d orgin feature/frontend`
 
-git branch -d <branch--name>               # Delete local
+git branch -d <branch--name>                    # Delete local
 
 eg `git push -d feature/frontend`
 
-git switch <branch--name>                  # switch branch
-
-git switch -c <branch-name>                # switch & create branch
-
-get merge <branch-name>                    # merge brach
-
-eg
+git switch <branch--name>                       # switch branch
 
 git switch develop
+get merge feature/<branch-name>                 # merge brach also
+git push
+
+eg
+get switch develop
 get merge feature/<branch-name>
+git push
+
+git add .
+git commit -m "message"
+git push
+
+
+git switch -c <branch-name>                     # switch & create branch
+git add .
+git commit -m "message"
+git push -u origin refactor                     # to publish (push) the branch to remote
+
+
+
