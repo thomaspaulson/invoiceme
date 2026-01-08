@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Invoice\StoreInvoiceRequest;
 use App\UseCases\Invoice\ShowInvoice\ShowInvoiceService;
 use App\UseCases\Invoice\CreateInvoice\CreateInvoice;
 use App\UseCases\Invoice\CreateInvoice\CreateInvoiceService;
@@ -30,7 +31,7 @@ class InvoiceController extends Controller
         return response()->json($invoice->asArray());
     }
 
-    public function store(Request $request, CreateInvoiceService $createInvoiceService)
+    public function store(StoreInvoiceRequest $request, CreateInvoiceService $createInvoiceService)
     {
         $createInvoice = CreateInvoice::fromRequestData($request->all());
         $invoiceID = $createInvoiceService->create($createInvoice);
