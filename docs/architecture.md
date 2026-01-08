@@ -2,7 +2,19 @@
 
 # Invoiceme Architecture
 
-Invoiceme Portal is sub-divided into `front-end` and `back-end` module. The stack details are mentioned below.
+Invoiceme Portal is powered by PHP on `backend` and ReactJS on `front-end`. The stack details are mentioned below.
+
+
+## Back-end
+
+we follow clean architecture principles with decoupled architecture having separate Domain/Application/Infrastructure layer.
+
+Also use Laravel so kind of hybrid car, handle request validation & routing etc
+
+| Technology | Version |
+| --- | ----------- |
+| Laravel | 12.x |
+
 
 ## Front-end
 We are using react.js library for the front-end, by utilizing  `vite`.
@@ -12,15 +24,10 @@ We are using react.js library for the front-end, by utilizing  `vite`.
 | --- | ----------- |
 | react.js | 19.* |
 
-## Back-end
-
-| Technology | Version |
-| --- | ----------- |
-| Laravel | 12.x |
 
 ## PROD & DEV Environments
 
-Both PROD and DEV environments are hosted in AWS. Both environments are sharing the same EC2 instance called `Invoiceme` under the AWS region `London`.
+Both PROD and DEV environments are hosted in AWS. Both environments are sharing the same EC2 instance called `Invoiceme` under the AWS region `Singapore`.
 If you want to access the server, you can connect to the `Invoiceme` instance in the `AWS console` under `EC2` services page.
 
 The DNS records for both the invoiceme.app and invoiceme.dev are managed in the `AWS Route53`
