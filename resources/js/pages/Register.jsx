@@ -29,22 +29,34 @@ export default function Register() {
   }
 
   return (
-    <>
-      <form onSubmit={submit} className="p-10 max-w-md mx-auto">
-        <input className="border p-2 w-full mb-4"
-          placeholder="Name"
-          onChange={e => setName(e.target.value)} />
-        <input className="border p-2 w-full mb-4"
-          placeholder="Email"
-          onChange={e => setEmail(e.target.value)} />
-        <input type="password" className="border p-2 w-full mb-4"
-          placeholder="Password"
-          onChange={e => setPassword(e.target.value)} />
-        <button className="bg-blue-600 text-white px-4 py-2 w-full">
-          Register
-        </button>
-      </form>
-      <Link to="/login">login</Link>
-    </>
+    <form
+      onSubmit={submit}
+      className="bg-white p-8 rounded shadow w-full max-w-md"
+    >
+      <h2 className="text-2xl font-bold mb-6 text-center">
+        Register
+      </h2>
+
+      <input className="border p-2 w-full mb-4"
+        placeholder="Name"
+        onChange={e => setName(e.target.value)} />
+      <input className="border p-2 w-full mb-4"
+        placeholder="Email"
+        onChange={e => setEmail(e.target.value)} />
+      <input type="password" className="border p-2 w-full mb-4"
+        placeholder="Password"
+        onChange={e => setPassword(e.target.value)} />
+      <button className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">
+        Register
+      </button>
+
+      <p className="text-sm text-center mt-4">
+        Already have an account?{" "}
+        <Link to="/login" className="text-blue-600">
+          Login
+        </Link>
+      </p>
+    </form>
+
   );
 }
