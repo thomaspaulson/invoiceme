@@ -6,44 +6,22 @@ use Domain\Shared\Date;
 
 class Vendor
 {
-    private string $id;
-
-    private string $firstName;
-
-    private string $lastName;
-
-    private string $email;
-
-    private string $contact;
-
-    private string $address;
-
-    private Date $created;
-
-    private Date $updated;
-
     private function __construct(
-        string $id,
-        string $firstName,
-        string $lastName,
-        string $email,
-        string $contact,
-        string $address,
-        Date $created,
-        Date $updated
+        private string $id,
+        private string $company,
+        private string $firstName,
+        private string $lastName,
+        private string $email,
+        private string $contact,
+        private string $address,
+        private Date $created,
+        private Date $updated
     ) {
-        $this->id = $id;
-        $this->firstName = $firstName;
-        $this->lastName = $lastName;
-        $this->email = $email;
-        $this->contact = $contact;
-        $this->address = $address;
-        $this->created = $created;
-        $this->updated = $updated;
     }
 
     public static function create(
         string $id,
+        string $company,
         string $firstName,
         string $lastName,
         string $email,
@@ -54,6 +32,7 @@ class Vendor
     ): static {
         $user = new static(
             $id,
+            $company,
             $firstName,
             $lastName,
             $email,
@@ -67,6 +46,7 @@ class Vendor
 
     public static function fromDatabase(
         string $id,
+        string $company,
         string $firstName,
         string $lastName,
         string $email,
@@ -77,6 +57,7 @@ class Vendor
     ): static {
         $user = new static(
             $id,
+            $company,
             $firstName,
             $lastName,
             $email,
@@ -90,6 +71,7 @@ class Vendor
 
 
     public function update(
+        string $company,
         string $firstName,
         string $lastName,
         string $email,
@@ -97,6 +79,7 @@ class Vendor
         string $address,
         Date $updated
     ): void {
+        $this->company = $company;
         $this->firstName = $firstName;
         $this->lastName = $lastName;
         $this->email = $email;
@@ -110,6 +93,7 @@ class Vendor
     {
         return [
             'id' => $this->id,
+            'company' => $this->company,
             'firstName' => $this->firstName,
             'lastName' => $this->lastName,
             'email' => $this->email,

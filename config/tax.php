@@ -4,12 +4,19 @@
  * return
 */
 return [
-    'required' => [
-        'cgst' => 'CGST'
-    ],
-    'optional' => [
-        'sgst' => 'SGST',
-        'igst' => 'IGST'
+    'taxes' => [
+        'cgst' => [
+         'label' => 'CGST',
+         'required' => true,
+        ],
+        'sgst' => [
+         'label' => 'SGST',
+         'required' => false,
+        ],
+        'igst' => [
+         'label' => 'IGST',
+         'required' => false,
+        ],
     ],
     /** tax based on hsncode */
     'hsncodes' => [

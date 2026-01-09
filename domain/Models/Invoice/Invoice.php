@@ -26,7 +26,6 @@ class Invoice
     private function __construct(
         string $id,
         Client $client,
-        array $items,
         Currency $currency,
         Date $created,
         Date $updated
@@ -35,20 +34,20 @@ class Invoice
         $this->id = $id;
         $this->client = $client;
 
-        if (empty($items)) {
-            throw new \InvalidArgumentException("Invoice must contain at least one line item.");
-        }
-        $this->items = $items;
         $this->currency = $currency;
         $this->created = $created;
         $this->updated = $updated;
 
     }
 
-    // public function id(): string
-    // {
-    //     return $this->id;
-    // }
+    public function setItems(array $items): void
+    {
+        if (empty($items)) {
+            throw new \InvalidArgumentException("Invoice must contain at least one line item.");
+        }
+        $this->items = $items;
+
+    }
 
     public function items(): array
     {
@@ -92,7 +91,6 @@ class Invoice
     public static function create(
         string $id,
         Client $client,
-        array $items,
         Currency $currency,
         Date $created,
         Date $updated
@@ -100,7 +98,6 @@ class Invoice
        return new static(
         $id,
         $client,
-        $items,
         $currency,
         $created,
         $updated
@@ -110,7 +107,6 @@ class Invoice
     public static function fromDatabase(
         string $id,
         Client $client,
-        array $items,
         Currency $currency,
         Date $created,
         Date $updated
@@ -118,7 +114,6 @@ class Invoice
         $invoice = new static(
             $id,
             $client,
-            $items,
             $currency,
             $created,
             $updated

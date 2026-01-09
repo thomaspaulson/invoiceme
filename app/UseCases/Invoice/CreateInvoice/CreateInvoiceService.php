@@ -18,7 +18,7 @@ class CreateInvoiceService
     public function __construct(
         private InvoiceRepository $invoiceRepo,
         private Clock $clock,
-        private TaxRepository $tax,
+        private TaxRepository $taxRepo,
         private EventDispatcherInterface $eventDispatcher
     ) {
     }
@@ -33,16 +33,17 @@ class CreateInvoiceService
             $createInvoice->gstin()
         );
 
-        ['hsncodes' => $hsnCodes, 'codes' => $taxCodes ] = $this->tax->get();
-        $items = InvoiceService::createLineItems($createInvoice->items(), $hsnCodes, $taxCodes);
+        ['hsncodes' => $hsnCodes, 'codes' => $taxCodes ] = $this->taxRepo->get();
         $invoice = Invoice::create(
             $id,
             $client,
-            $items,
             new Currency('INR'),
             $date,
             $date
         );
+
+        $items = InvoiceService::createLineItems($createInvoice->items(), $hsnCodes, $taxCodes);
+        $invoice->setItems($items);
         $invoice->setTaxes($createInvoice->taxes());
 
         // insert Invoice into db

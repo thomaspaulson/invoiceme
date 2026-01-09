@@ -12,6 +12,7 @@ use App\UseCases\Vendor\ListVendors\ListVendorService;
 use App\UseCases\Vendor\ListVendors\Vendor;
 use Illuminate\Http\Request;
 use App\Http\Requests\Vendor\CreateVendorRequest;
+use App\Http\Requests\Vendor\UpdateVendorRequest;
 
 class VendorController extends Controller
 {
@@ -43,7 +44,7 @@ class VendorController extends Controller
         return response()->json(['vendorID' => $vendorID]);
     }
 
-    public function update(Request $request, $id, UpdateVendorService $updateVendorService)
+    public function update(UpdateVendorRequest $request, $id, UpdateVendorService $updateVendorService)
     {
 
         $updateVendor = UpdateVendor::fromRequestData($request->all());

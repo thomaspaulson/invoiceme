@@ -98,20 +98,11 @@ class InvoiceDbRepository implements InvoiceRepository
             throw InvoiceNotFound::withId($id);
         }
 
-        $invoiceItems = DB::table('invoice_items')
-        ->where('invoice_id', $id)->get();
-        $items = [];
-        foreach($invoiceItems as $it){
-            $money = new Money($it->rate, new Currency($it->currency));
-            $items[] = new LineItem($it->id, $it->name, $it->hsn_code, $money, $it->quantity, $it->tax);
-        }
-
         $clientJson = json_decode($invoice->client);
         $client = new Client($clientJson->name, $clientJson->address,$clientJson->gstin);
         return Invoice::fromDatabase(
             $invoice->id,
             $client,
-            $items,
             new Currency($invoice->currency),
             Date::fromString($invoice->created_at),
             Date::fromString($invoice->updated_at),

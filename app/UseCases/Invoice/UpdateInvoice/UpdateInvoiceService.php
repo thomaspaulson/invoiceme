@@ -15,8 +15,8 @@ class UpdateInvoiceService
 {
 
     public function __construct(
-        private InvoiceRepository $repo,
-        private TaxRepository $tax,
+        private InvoiceRepository $invoiceRepo,
+        private TaxRepository $taxRepo,
         private Clock $clock
     ) {
     }
@@ -24,7 +24,7 @@ class UpdateInvoiceService
     function update(UpdateInvoice $updateInvoice, string $id): string
     {
         $updated = Date::fromCurrentTime($this->clock->currentTime());
-        $invoice = $this->repo->getById($id);
+        $invoice = $this->invoiceRepo->getById($id);
         $invoice->setTaxes($updateInvoice->taxes());
 
         $client = new Client(
@@ -33,7 +33,7 @@ class UpdateInvoiceService
             $updateInvoice->gstin()
         );
 
-        ['hsncodes' => $hsnCodes, 'codes' => $taxCodes ] = $this->tax->get();
+        ['hsncodes' => $hsnCodes, 'codes' => $taxCodes ] = $this->taxRepo->get();
         $items = InvoiceService::createLineItems($updateInvoice->items(), $hsnCodes, $taxCodes);
 
         $invoice->update(
@@ -43,7 +43,7 @@ class UpdateInvoiceService
             $updated
         );
         // update invoice
-        $this->repo->update($invoice, $id);
+        $this->invoiceRepo->update($invoice, $id);
         return $id;
     }
 }
