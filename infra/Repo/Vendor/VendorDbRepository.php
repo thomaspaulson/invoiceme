@@ -48,6 +48,7 @@ class VendorDbRepository implements VendorRepository
 
         return Vendor::fromDatabase(
             $vendor->id,
+            $vendor->company,
             $vendor->firstName,
             $vendor->lastName,
             $vendor->email,

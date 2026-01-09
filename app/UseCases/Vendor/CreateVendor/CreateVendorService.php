@@ -25,6 +25,7 @@ class CreateVendorService
         $created = $updated = Date::fromCurrentTime($this->clock->currentTime());
         $vendor = Vendor::create(
             $id,
+            $createVendor->company(),
             $createVendor->firstName(),
             $createVendor->lastName(),
             $createVendor->email(),

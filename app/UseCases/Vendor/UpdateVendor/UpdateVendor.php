@@ -5,28 +5,20 @@ namespace App\UseCases\Vendor\UpdateVendor;
 class UpdateVendor
 {
     //
-    private string $firstName;
-
-    private string $lastName;
-
-    private string $email;
-
-    private string $contact;
-
-    private string $address;
-
     public function __construct(
-        string $firstName,
-        string $lastName,
-        string $email,
-        string $contact,
-        string $address
+        private string $company,
+        private string $firstName,
+        private string $lastName,
+        private string $email,
+        private string $contact,
+        private string $address
     ) {
-        $this->firstName = $firstName;
-        $this->lastName = $lastName;
-        $this->email = $email;
-        $this->contact = $contact;
-        $this->address = $address;
+    }
+
+
+    public function company(): string
+    {
+        return $this->company;
     }
 
 
@@ -58,6 +50,7 @@ class UpdateVendor
     public static function fromRequestData(array $data): static
     {
         return new static(
+            $data['company'],
             $data['firstName'],
             $data['lastName'],
             $data['email'],

@@ -5,7 +5,7 @@ namespace App\Http\Requests\Vendor;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class CreateVendorRequest extends FormRequest
+class UpdateVendorRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,16 +24,17 @@ class CreateVendorRequest extends FormRequest
      */
     public function rules()
     {
+        $id = $this->route('vendor');
         return [
             //
             'company' => ['required', 'string', 'max:155'],
             'firstName' => ['nullable', 'string', 'max:155'],
             'lastName' => ['nullable', 'string', 'max:155'],
-            'email' => [
+                        'email' => [
                 'nullable',
                 'string',
                 'email',
-                Rule::unique('vendors', 'email')
+                Rule::unique('vendors', 'email')->ignore($id, 'id')
             ],
             'contact' => ['nullable', 'string', 'max:15'],
             'address' => ['required', 'string', 'max:255'],

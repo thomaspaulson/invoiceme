@@ -26,13 +26,13 @@ class UpdateVendorService
         $updated = Date::fromCurrentTime($this->clock->currentTime());
         $vendor = $this->vendorRepo->getById($id);
         $vendor->update(
+            $updateVendor->company(),
             $updateVendor->firstName(),
             $updateVendor->lastName(),
             $updateVendor->email(),
             $updateVendor->contact(),
             $updateVendor->address(),
-            $updated,
-            $vendor
+            $updated
         );
         // update vendor
         $this->vendorRepo->update($vendor, $id);

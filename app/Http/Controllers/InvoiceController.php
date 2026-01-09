@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Invoice\StoreInvoiceRequest;
+use App\Http\Requests\Invoice\UpdateInvoiceRequest;
 use App\UseCases\Invoice\ShowInvoice\ShowInvoiceService;
 use App\UseCases\Invoice\CreateInvoice\CreateInvoice;
 use App\UseCases\Invoice\CreateInvoice\CreateInvoiceService;
@@ -38,7 +39,7 @@ class InvoiceController extends Controller
         return response()->json(['invoiceID' => $invoiceID]);
     }
 
-    public function update(Request $request, $id, UpdateInvoiceService $updateInvoiceService)
+    public function update(UpdateInvoiceRequest $request, $id, UpdateInvoiceService $updateInvoiceService)
     {
         $updateInvoice = UpdateInvoice::fromRequestData($request->all());
         $invoiceID = $updateInvoiceService->update($updateInvoice, $id);
