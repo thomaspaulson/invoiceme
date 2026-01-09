@@ -8,35 +8,17 @@ use Domain\Shared\Money;
 
 class Invoice
 {
-    private string $id;
-
-    private Client $client;
 
     /** @var LineItem[] */
     private array $items;
 
-    private Currency $currency;
-
-    private array $taxes;
-
-    private Date $created;
-
-    private Date $updated;
-
     private function __construct(
-        string $id,
-        Client $client,
-        Currency $currency,
-        Date $created,
-        Date $updated
+        private string $id,
+        private Client $client,
+        private Currency $currency,
+        private Date $created,
+        private Date $updated
     ) {
-
-        $this->id = $id;
-        $this->client = $client;
-
-        $this->currency = $currency;
-        $this->created = $created;
-        $this->updated = $updated;
 
     }
 
