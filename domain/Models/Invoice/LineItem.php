@@ -6,22 +6,16 @@ use Domain\Shared\Money;
 
 final class LineItem
 {
-    private string $id;
-    private string $name;
-    private string $hsnCode;
-    private Money $rate;
-    private int $quantity;
-    private int $tax;
 
-
-    public function __construct(string $id, string $name, string $hsnCode, Money $rate, int $quantity, int $tax) {
-        $this->id = $id;
+    public function __construct(
+        private string $id,
+        private string $name,
+        private string $hsnCode,
+        private Money $rate,
+        private int $quantity,
+        private int $tax
+        ) {
         if ($quantity <= 0) throw new \InvalidArgumentException("Quantity must be > 0");
-        $this->quantity = $quantity;
-        $this->name = $name;
-        $this->hsnCode = $hsnCode;
-        $this->rate = $rate;
-        $this->tax = $tax;
     }
 
     public function name(): string {

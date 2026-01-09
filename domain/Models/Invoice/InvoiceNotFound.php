@@ -6,12 +6,12 @@ use Exception;
 
 class InvoiceNotFound extends Exception
 {
-    private function __construct($message)
+    private function __construct(string $message)
     {
         parent::__construct($message);
     }
 
-    public static function withId($id)
+    public static function withId(string $id)
     {
         $message = "Invoice with id:$id not found";
         return new self($message);
