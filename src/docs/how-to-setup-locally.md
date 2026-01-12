@@ -13,6 +13,12 @@ docker compose run --rm \
 
 docker compose up -d
 
+docker compose run --rm \
+    -w /application \
+    php-fpm \
+    sh
+
+
 To shutdown, run `docker compose down`
 
 

@@ -20,6 +20,7 @@ class Invoice
         private Date $updated
     ) {
 
+
     }
 
     public function setItems(array $items): void

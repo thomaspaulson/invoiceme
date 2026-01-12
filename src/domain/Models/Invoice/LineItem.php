@@ -16,6 +16,7 @@ final class LineItem
         private int $tax
         ) {
         if ($quantity <= 0) throw new \InvalidArgumentException("Quantity must be > 0");
+
     }
 
     public function name(): string {
