@@ -18,10 +18,6 @@ class Invoice
     ) {
     }
 
-    // public function id(): string
-    // {
-    //     return $this->id;
-    // }
 
     public function clientName(): string
     {
@@ -40,12 +36,12 @@ class Invoice
         return $this->total->format();
     }
 
-    public function created(): string
+    public function createdAt(): string
     {
         return $this->createdAt->asString();
     }
 
-    public function updated(): string
+    public function updatedAt(): string
     {
         return $this->updatedAt->asString();
     }
@@ -57,8 +53,8 @@ class Invoice
             'clientName' => $this->clientName(),
             'clientAddress' => $this->clientAddress(),
             'amount' => $this->amount(),
-            'created' => $this->created(),
-            'updated' => $this->updated(),
+            'createdAt' => $this->createdAt(),
+            'updatedAt' => $this->updatedAt(),
         ];
     }
 }

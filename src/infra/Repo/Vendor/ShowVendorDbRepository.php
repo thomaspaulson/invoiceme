@@ -22,6 +22,7 @@ class ShowVendorDbRepository implements ShowVendorRepository
 
         return new Vendor(
             $vendor->id,
+            $vendor->company,
             $vendor->firstName,
             $vendor->lastName,
             $vendor->email,

@@ -1,10 +1,10 @@
 <?php
 
-namespace Domain\Models\Vendor;
+namespace Domain\Models\Client;
 
 use Exception;
 
-class VendorNotFound extends Exception
+class ClientNotFound extends Exception
 {
     private function __construct($message)
     {
@@ -13,7 +13,7 @@ class VendorNotFound extends Exception
 
     public static function withId($id)
     {
-        $message = "Vendor with id: $id not found";
+        $message = "Client with id: $id not found";
         return new self($message);
     }
 }
