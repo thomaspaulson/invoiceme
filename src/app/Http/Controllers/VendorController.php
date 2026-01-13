@@ -20,12 +20,12 @@ class VendorController extends Controller
     public function index(Request $request, ListVendorService $listVendorService)
     {
 
-        $vendors = $listVendorService->list();
-        return array_map(
+        $result = $listVendorService->list();
+        $result['data'] = array_map(
             fn (Vendor $vendor) => $vendor->asArray(),
-            $vendors
+            $result['data']
         );
-
+        return $result;
     }
 
     public function show(Request $request, $id, ShowVendorService $showVendorService)

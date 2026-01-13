@@ -11,22 +11,30 @@ class VendorListDbRepository implements VendorListRepository
 {
     public function listVendors(): array
     {
-        $records = array_map(
+        $paginated = DB::table('vendors')->paginate(15);
+
+        $records = [
+            'data' => array_map(
             function ($r) {
                 return new Vendor(
-                    $r->id,
-                    $r->company,
-                    $r->firstName,
-                    $r->lastName,
-                    $r->email,
-                    $r->contact,
-                    $r->address,
-                    Date::fromString($r->createdAt),
-                    Date::fromString($r->updatedAt)
+                $r->id,
+                $r->company,
+                $r->firstName,
+                $r->lastName,
+                $r->email,
+                $r->contact,
+                $r->address,
+                Date::fromString($r->created_at),
+                Date::fromString($r->updated_at)
                 );
             },
-            DB::table('vendors')->get()->toArray()
-        );
+            $paginated->items()
+            ),
+            'current_page' => $paginated->currentPage(),
+            'last_page' => $paginated->lastPage(),
+            'per_page' => $paginated->perPage(),
+            'total' => $paginated->total()
+        ];
 
         return $records;
     }
