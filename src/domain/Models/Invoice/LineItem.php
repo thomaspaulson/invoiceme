@@ -1,0 +1,67 @@
+<?php
+declare(strict_types=1);
+namespace Domain\Models\Invoice;
+
+use Domain\Shared\Money;
+
+final class LineItem
+{
+
+    public function __construct(
+        private string $id,
+        private string $name,
+        private string $hsnCode,
+        private Money $rate,
+        private int $quantity,
+        private int $tax
+        ) {
+        if ($quantity <= 0) throw new \InvalidArgumentException("Quantity must be > 0");
+
+    }
+
+    public function name(): string {
+        return $this->name;
+    }
+
+    public function rate(): Money {
+        return $this->rate;
+    }
+
+    public function quantity(): int {
+        return $this->quantity;
+    }
+
+    public function taxPercent(): int {
+        return $this->quantity;
+    }
+
+    public function total(): Money {
+        return new Money($this->rate->cents() * $this->quantity, $this->rate->currency());
+    }
+
+    public function taxAmount(): Money {
+        $taxAmount =  $this->total()->cents() * $this->tax / 100;
+        return new Money($taxAmount, $this->rate()->currency());
+    }
+
+    public function withTax(): Money {
+        return $this->total()->add($this->taxAmount());
+    }
+
+
+    public function mappedData(): array {
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'hsn_code' => $this->hsnCode,
+            'quantity' => $this->quantity,
+            'rate' => $this->rate->cents(),
+            'total' => $this->total()->cents(),
+            'tax' => $this->tax,
+            'tax_amount' => $this->taxAmount()->cents(),
+            'with_tax' => $this->withTax()->cents(),
+            'currency' => $this->rate->currency()->toString(),
+        ];
+    }
+
+}
