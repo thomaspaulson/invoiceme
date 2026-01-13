@@ -1,10 +1,9 @@
 <?php
 declare(strict_types=1);
-namespace App\UseCases\Vendor\ListVendors;
+namespace App\UseCases\Client\ShowClient;
+use Domain\Shared\Date;
 
- use Domain\Shared\Date;
-
-class Vendor
+class Client
 {
 
     public function __construct(
@@ -20,6 +19,7 @@ class Vendor
     ) {
     }
 
+
     public function createdAt(): string
     {
         return $this->createdAt->asString();
@@ -29,7 +29,6 @@ class Vendor
     {
         return $this->updatedAt->asString();
     }
-
 
     public function asArray(): array
     {

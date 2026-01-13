@@ -7,6 +7,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\ClientController;
 use Psr\EventDispatcher\EventDispatcherInterface;
 
 Route::get('/user', function (Request $request) {
@@ -24,6 +25,7 @@ Route::post('/register', [RegisterController::class, 'index']);
 Route::post('/login', [LoginController::class, 'index']);
 Route::resource('/vendor', VendorController::class);
 Route::resource('/invoice', InvoiceController::class);
+Route::apiResource('/client', ClientController::class);
 
 
 Route::get('/invoice/create', function (EventDispatcherInterface $dispatcher) {
