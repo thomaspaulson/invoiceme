@@ -18,8 +18,10 @@ export default function DashboardLayout() {
           Welcome {user?.name}
         </div>
         <nav className="p-4 space-y-2">
-          <a className="block px-4 py-2 rounded bg-blue-100 text-blue-700">Dashboard</a>
-          <a className="block px-4 py-2 rounded hover:bg-gray-100">Users</a>
+          <Link to="/" className="block px-4 py-2 rounded bg-blue-100 text-blue-700">Dashboard</Link>
+          <Link to="/invoices" className="block px-4 py-2 rounded hover:bg-gray-100">Invoices</Link>
+          <Link to="/clients" className="block px-4 py-2 rounded hover:bg-gray-100">Clients</Link>
+          <Link to="/items" className="block px-4 py-2 rounded hover:bg-gray-100">Items</Link>
           <a className="block px-4 py-2 rounded hover:bg-gray-100">Reports</a>
           <a className="block px-4 py-2 rounded hover:bg-gray-100">Settings</a>
         </nav>
