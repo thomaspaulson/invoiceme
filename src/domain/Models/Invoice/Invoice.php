@@ -12,6 +12,10 @@ class Invoice
     /** @var LineItem[] */
     private array $items;
 
+
+    /** @var Tax[] */
+    private array $taxes;
+
     private function __construct(
         private string $id,
         private Client $client,

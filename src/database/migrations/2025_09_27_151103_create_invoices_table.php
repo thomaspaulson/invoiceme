@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('invoices', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->json('client');
-            $table->decimal('amount', total: 8, places: 2);
+            $table->decimal('amount', total: 15, places: 2);
             $table->json('taxes');
-            $table->decimal('tax_amount', total: 8, places: 2);
-            $table->decimal('with_tax', total: 8, places: 2);
+            $table->decimal('tax_amount', total: 15, places: 2);
+            $table->decimal('with_tax', total: 15, places: 2);
             $table->string('currency');
             $table->timestamps();
         });
@@ -28,12 +28,12 @@ return new class extends Migration
             $table->string('name');
             $table->string('hsn_code');
             $table->integer('quantity');
-            $table->decimal('rate', total: 8, places: 2);
-            $table->decimal('total', total: 8, places: 2);
+            $table->decimal('rate', total: 15, places: 2);
+            $table->decimal('total', total: 15, places: 2);
             $table->integer('tax');
-            $table->decimal('tax_amount', total: 8, places: 2);
-            $table->decimal('with_tax', total: 8, places: 2);
-            $table->string('currency');
+            $table->decimal('tax_amount', total: 15, places: 2);
+            $table->decimal('with_tax', total: 15, places: 2);
+            $table->string('currency', length: 3);
             $table->date("created_at");
         });
 

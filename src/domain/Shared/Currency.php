@@ -35,4 +35,15 @@ final class Currency
     {
         return new self('EUR');
     }
+
+    public static function INR(): self
+    {
+        return new self('INR');
+    }
+
+        public static function USD(): self
+    {
+        return new self('USD');
+    }
+
 }

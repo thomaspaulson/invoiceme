@@ -44,4 +44,8 @@ final class Money
     public function format(): string {
         return sprintf("%s %s", $this->toFloat(), $this->currency()->toString());
     }
+
+    public function digits(): string {
+        return number_format($this->toFloat(), 2, '.', '');
+    }
 }
