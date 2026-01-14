@@ -5,8 +5,10 @@ namespace Infra\Repo\Item;
 use App\UseCases\Item\ShowItem\ShowItemRepository;
 use App\UseCases\Item\ShowItem\Item;
 use Domain\Models\Item\ItemNotFound;
+use Domain\Shared\Currency;
 use Illuminate\Support\Facades\DB;
 use Domain\Shared\Date;
+use Domain\Shared\Money;
 
 class ShowItemDbRepository implements ShowItemRepository
 {
@@ -24,7 +26,7 @@ class ShowItemDbRepository implements ShowItemRepository
             $item->id,
             $item->name,
             $item->hsn_code,
-            $item->amount,
+            new Money($item->amount,  new Currency($item->currency)),
             Date::fromString($item->created_at),
             Date::fromString($item->updated_at)
         );

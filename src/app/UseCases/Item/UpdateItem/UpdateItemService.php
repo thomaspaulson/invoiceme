@@ -28,6 +28,7 @@ class UpdateItemService
             $updateItem->name(),
             $updateItem->hsnCode(),
             $updateItem->amount(),
+            $updateItem->currency(),
             $updated
         );
         // update item

@@ -36,7 +36,7 @@ class Invoice
 
     public function amount(): string
     {
-        return $this->total->format();
+        return $this->total->digits();
     }
 
     public function created(): string

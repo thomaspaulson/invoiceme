@@ -4,6 +4,9 @@ namespace Infra\Repo\Item;
 
 use App\UseCases\Item\ListItems\ItemListRepository;
 use App\UseCases\Item\ListItems\Item;
+use Domain\Shared\Currency;
+use Domain\Shared\Date;
+use Domain\Shared\Money;
 use Illuminate\Support\Facades\DB;
 
 class ItemListDbRepository implements ItemListRepository
@@ -16,7 +19,9 @@ class ItemListDbRepository implements ItemListRepository
                     $r->id,
                     $r->name,
                     $r->hsn_code,
-                    $r->amount,
+                    new Money($r->amount, new Currency($r->currency)),
+                    Date::fromString($r->created_at),
+                    Date::fromString($r->updated_at)
                 );
             },
             DB::table('items')->get()->toArray()

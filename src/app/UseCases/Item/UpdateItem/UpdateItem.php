@@ -2,13 +2,16 @@
 declare(strict_types=1);
 namespace App\UseCases\Item\UpdateItem;
 
+use Domain\Shared\Currency;
+
 class UpdateItem
 {
     //
     public function __construct(
         private string $name,
         private string $hsnCode,
-        private float $amount
+        private float $amount,
+        private string $currency
     ) {
     }
 
@@ -24,9 +27,15 @@ class UpdateItem
         return $this->hsnCode;
     }
 
+
     public function amount(): float
     {
         return $this->amount;
+    }
+
+    public function currency(): string
+    {
+        return $this->currency;
     }
 
     public static function fromRequestData(array $data): static
@@ -34,7 +43,8 @@ class UpdateItem
         return new static(
             $data['name'],
             $data['hsn_code'],
-            $data['amount']
+            (float)$data['amount'],
+            $data['currency'] ?? Currency::INR()->toString()
         );
     }
 }

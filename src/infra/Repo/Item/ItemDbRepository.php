@@ -51,6 +51,7 @@ class ItemDbRepository implements ItemRepository
             $item->name,
             $item->hsn_code,
             $item->amount,
+            $item->currency,
             Date::fromString($item->created_at),
             Date::fromString($item->updated_at),
         );
