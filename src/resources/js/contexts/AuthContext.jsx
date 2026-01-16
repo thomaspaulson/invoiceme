@@ -26,7 +26,7 @@ const login = onSuccess => async (credentials) => {
 
     return {
       success: false,
-      message: 'Something went wrong. Try again.',
+      message: error.response.data.error || 'Something went wrong. Try again.',
     };
   }
 };
