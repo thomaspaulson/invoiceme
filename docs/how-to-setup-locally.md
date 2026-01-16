@@ -1,5 +1,5 @@
 
-# Setting up locally backend & frontend
+# Setting up backend & frontend for development
 
 
 # Backend
