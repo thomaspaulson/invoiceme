@@ -21,8 +21,8 @@ class VendorListDbRepository implements VendorListRepository
                     $r->email,
                     $r->contact,
                     $r->address,
-                    Date::fromString($r->createdAt),
-                    Date::fromString($r->updatedAt)
+                    Date::fromString($r->created_at),
+                    Date::fromString($r->updated_at)
                 );
             },
             DB::table('vendors')->get()->toArray()

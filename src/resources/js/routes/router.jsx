@@ -6,6 +6,9 @@ import Dashboard from "../pages/Dashboard";
 import PublicLayout from "../layouts/PublicLayout";
 import DashboardLayout from "../layouts/DashboardLayout";
 import ProtectedRoute from "./ProtectedRoute";
+import InvoiceRoutes from "../pages/invoice/routes";
+import ClientRoutes from "../pages/clients/routes";
+import ItemRoutes from "../pages/items/routes";
 
 const router = createBrowserRouter([
   {
@@ -24,10 +27,10 @@ const router = createBrowserRouter([
       </ProtectedRoute>
     ),
     children: [
-      {
-        index: true,
-        element: <Dashboard />,
-      },
+      { index: true, element: <Dashboard /> },
+      { path: "/invoices/*", element: <InvoiceRoutes /> },
+      { path: "/clients/*", element: <ClientRoutes /> },
+      { path: "/items/*", element: <ItemRoutes /> },
     ],
   },
 ]);

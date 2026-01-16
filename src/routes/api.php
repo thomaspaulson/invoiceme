@@ -21,13 +21,14 @@ Route::middleware('auth:sanctum')->group(function () {
         $request->user()->currentAccessToken()->delete(); // Revoke the current token
         return response()->noContent();
     });
+    Route::apiResource('/vendor', VendorController::class);
+    Route::apiResource('/invoice', InvoiceController::class);
+    Route::apiResource('/client', ClientController::class);
+    Route::apiResource('/item', ItemController::class);
+
 });
 Route::post('/register', [RegisterController::class, 'index']);
 Route::post('/login', [LoginController::class, 'index']);
-Route::resource('/vendor', VendorController::class);
-Route::resource('/invoice', InvoiceController::class);
-Route::apiResource('/client', ClientController::class);
-Route::apiResource('/item', ItemController::class);
 
 
 Route::get('/invoice/create', function (EventDispatcherInterface $dispatcher) {
