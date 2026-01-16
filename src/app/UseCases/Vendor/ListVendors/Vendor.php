@@ -42,8 +42,8 @@ class Vendor
             'email' => $this->email,
             'contact' => $this->contact,
             'address' => $this->address,
-            'createdAt' => $this->createdAt(),
-            'updatedAt' => $this->updatedAt(),
+            'created_at' => $this->createdAt(),
+            'updated_at' => $this->updatedAt(),
         ];
     }
 }

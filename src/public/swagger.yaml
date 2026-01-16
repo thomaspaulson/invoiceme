@@ -43,14 +43,20 @@ components:
         id:
           type: integer
           example: 1
-        name:
+        company:
           type: string
           example: ACME Corporation
+        firstName:
+          type: string
+          example: John
+        lastName:
+          type: string
+          example: Doe
         email:
           type: string
           format: email
           example: contact@acme.com
-        phone:
+        contact:
           type: string
           example: +1234567890
         address:
@@ -530,7 +536,7 @@ paths:
           in: path
           required: true
           schema:
-            type: integer
+            type: string
           description: Vendor ID
       responses:
         '200':
@@ -541,8 +547,8 @@ paths:
                 type: object
                 properties:
                   vendorID:
-                    type: integer
-                    example: 1
+                    type: string
+                    example: "a51fa1fe-c6fa-410d-a95a-0d6d12e6c264"
         '404':
           description: Vendor not found
 
