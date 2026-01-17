@@ -38,40 +38,26 @@ components:
         errors:
           type: object
     Vendor:
-      type: object
-      properties:
-        id:
-          type: integer
-          example: 1
-        company:
-          type: string
-          example: ACME Corporation
-        firstName:
-          type: string
-          example: John
-        lastName:
-          type: string
-          example: Doe
-        email:
-          type: string
-          format: email
-          example: contact@acme.com
-        contact:
-          type: string
-          example: +1234567890
-        address:
-          type: string
-          example: 123 Main Street
-        created_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
+      allOf:
+      - type: object
+        properties:
+          id:
+            type: string
+            example: "a51fa1fe.."
+      - $ref: '#/components/schemas/VendorInput'
+      - type: object
+        properties:
+          created_at:
+            type: string
+            format: date-time
+          updated_at:
+            type: string
+            format: date-time
     VendorInput:
       type: object
       required:
         - company
+        - address
       properties:
         company:
           type: string
@@ -140,75 +126,104 @@ components:
         updated_at:
           type: string
           format: date-time
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Item'
     InvoiceInput:
       type: object
       required:
-        - client_id
-        - vendor_id
+        - name
+        - address
         - issue_date
         - due_date
       properties:
-        invoice_number:
+        name:
           type: string
-          example: INV-2026-001
-        client_id:
-          type: integer
-          example: 1
-        vendor_id:
-          type: integer
-          example: 1
-        issue_date:
+          example: john
+        address:
+          type: status
+          example: 123 Main Street
+        gstin:
           type: string
-          format: date
-          example: "2026-01-16"
-        due_date:
+          example: 22AAAAA0000A1Z5
+        taxes:
+          type: array
+          items:
+            type: string
+            enum: ["cgst", "sgst", "igst"]
+          example: ["cgst", "sgst"]
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/InvoiceItemInput'
+    InvoiceItemInput:
+      type: object
+      required:
+        - id
+        - company
+        - address
+        - hsn_code
+        - quantity
+        - rate
+        - tax
+      properties:
+        id:
           type: string
-          format: date
-          example: "2026-02-16"
-        subtotal:
+          example: "uuid"
+        company:
+          type: string
+          example: "IDC"
+        address:
+          type: string
+          example: "91 pretoria"
+        hsn_code:
           type: number
-          format: float
-          example: 1000.00
-        tax:
+          example: 270010
+        quantity:
+          type: number
+          example: 10
+        rate:
           type: number
           format: float
           example: 100.00
-        total:
+        tax:
           type: number
           format: float
-          example: 1100.00
-        status:
-          type: string
-          enum: [draft, sent, paid, cancelled]
-          example: draft
-        notes:
-          type: string
-          example: Payment terms net 30
+          example: 18.00
     Client:
-      type: object
-      properties:
-        id:
-          type: integer
-          example: 1
-        name:
-          type: string
-          example: John Doe
-        email:
-          type: string
-          format: email
-          example: john@example.com
-        phone:
-          type: string
-          example: +1234567890
-        address:
-          type: string
-          example: 456 Client Street
-        created_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
+      allOf:
+      - $ref: '#/components/schemas/Vendor'
+      - type: object
+        properties:
+          id:
+            type: string
+            example: 1
+          company:
+            type: string
+            example: IDC Ltd
+          firstName:
+            type: string
+            example: Doe
+          lastName:
+            type: string
+            example: Doe
+          email:
+            type: string
+            format: email
+            example: john@example.com
+          contact:
+            type: string
+            example: +1234567890
+          address:
+            type: string
+            example: 456 Client Street
+          created_at:
+            type: string
+            format: date-time
+          updated_at:
+            type: string
+            format: date-time
     ClientInput:
       type: object
       required:
@@ -231,18 +246,21 @@ components:
       type: object
       properties:
         id:
-          type: integer
-          example: 1
+          type: string
+          example: "uuid"
         name:
           type: string
-          example: Web Development Service
-        description:
-          type: string
-          example: Custom web application development
-        unit_price:
+          example: "Pet coke"
+        hsn_code:
+          type: number
+          example: 270010
+        rate:
           type: number
           format: float
           example: 100.00
+        currency:
+          type: string
+          example: "USD"
         created_at:
           type: string
           format: date-time
@@ -253,18 +271,19 @@ components:
       type: object
       required:
         - name
-        - unit_price
+        - hsn_code
+        - amount
       properties:
         name:
           type: string
-          example: Web Development Service
-        description:
-          type: string
-          example: Custom web application development
-        unit_price:
+          example: "Pet coke"
+        hsn_code:
+          type: number
+          example: 270010
+        rate:
           type: number
           format: float
-          example: 100.00
+          example: 10.00
     User:
       type: object
       properties:
@@ -625,6 +644,8 @@ paths:
       tags:
         - Invoices
       summary: Update invoice
+      security:
+        - bearerAuth: []
       parameters:
         - name: id
           in: path
@@ -657,6 +678,8 @@ paths:
       tags:
         - Invoices
       summary: Delete invoice
+      security:
+        - bearerAuth: []
       parameters:
         - name: id
           in: path
@@ -683,6 +706,8 @@ paths:
       tags:
         - Clients
       summary: List all clients
+      security:
+        - bearerAuth: []
       responses:
         '200':
           description: List of clients
@@ -696,6 +721,8 @@ paths:
       tags:
         - Clients
       summary: Create a new client
+      security:
+        - bearerAuth: []
       requestBody:
         required: true
         content:
@@ -725,6 +752,8 @@ paths:
       tags:
         - Clients
       summary: Get client by ID
+      security:
+        - bearerAuth: []
       parameters:
         - name: id
           in: path
@@ -745,6 +774,8 @@ paths:
       tags:
         - Clients
       summary: Update client
+      security:
+        - bearerAuth: []
       parameters:
         - name: id
           in: path
@@ -777,6 +808,8 @@ paths:
       tags:
         - Clients
       summary: Delete client
+      security:
+        - bearerAuth: []
       parameters:
         - name: id
           in: path
@@ -803,6 +836,8 @@ paths:
       tags:
         - Items
       summary: List all items
+      security:
+        - bearerAuth: []
       responses:
         '200':
           description: List of items
@@ -816,6 +851,8 @@ paths:
       tags:
         - Items
       summary: Create a new item
+      security:
+        - bearerAuth: []
       requestBody:
         required: true
         content:
@@ -845,6 +882,8 @@ paths:
       tags:
         - Items
       summary: Get item by ID
+      security:
+        - bearerAuth: []
       parameters:
         - name: id
           in: path
@@ -865,6 +904,8 @@ paths:
       tags:
         - Items
       summary: Update item
+      security:
+        - bearerAuth: []
       parameters:
         - name: id
           in: path
@@ -897,6 +938,8 @@ paths:
       tags:
         - Items
       summary: Delete item
+      security:
+        - bearerAuth: []
       parameters:
         - name: id
           in: path
