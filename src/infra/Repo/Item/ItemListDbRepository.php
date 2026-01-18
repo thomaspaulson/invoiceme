@@ -19,7 +19,7 @@ class ItemListDbRepository implements ItemListRepository
                     $r->id,
                     $r->name,
                     $r->hsn_code,
-                    new Money($r->amount, new Currency($r->currency)),
+                    new Money($r->rate, new Currency($r->currency)),
                     Date::fromString($r->created_at),
                     Date::fromString($r->updated_at)
                 );

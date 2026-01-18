@@ -22,7 +22,7 @@ class Item
         string $id,
         string $name,
         string $hsnCode,
-        float $amount,
+        float $rate,
         string $currency,
         Date $created,
         Date $updated
@@ -31,7 +31,7 @@ class Item
             $id,
             $name,
             $hsnCode,
-            Money::fromFloat(floatval($amount), new Currency($currency)),
+            Money::fromFloat(floatval($rate), new Currency($currency)),
             $created,
             $updated
         );
@@ -42,7 +42,7 @@ class Item
         string $id,
         string $name,
         string $hsnCode,
-        float $amount,
+        float $rate,
         string $currency,
         Date $created,
         Date $updated
@@ -51,7 +51,7 @@ class Item
             $id,
             $name,
             $hsnCode,
-            new Money($amount, new Currency($currency)),
+            new Money($rate, new Currency($currency)),
             $created,
             $updated
         );
@@ -62,13 +62,13 @@ class Item
     public function update(
         string $name,
         string $hsnCode,
-        float $amount,
+        float $rate,
         string $currency,
         Date $updated
     ): void {
         $this->name = $name;
         $this->hsnCode = $hsnCode;
-        $this->rate = Money::fromFloat($amount, new Currency($currency));
+        $this->rate = Money::fromFloat($rate, new Currency($currency));
         $this->updated = $updated;
     }
 
@@ -84,7 +84,7 @@ class Item
             'id' => $this->id,
             'name' => $this->name,
             'hsn_code' => $this->hsnCode,
-            'amount' => $this->rate()->cents(),
+            'rate' => $this->rate()->cents(),
             'currency' => $this->rate()->currency()->toString(),
             'created_at' => $this->created->asString(),
             'updated_at' => $this->updated->asString(),

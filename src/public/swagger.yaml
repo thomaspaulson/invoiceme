@@ -252,8 +252,8 @@ components:
           type: string
           example: "Pet coke"
         hsn_code:
-          type: number
-          example: 270010
+          type: string
+          example: "270010"
         rate:
           type: number
           format: float
@@ -278,8 +278,8 @@ components:
           type: string
           example: "Pet coke"
         hsn_code:
-          type: number
-          example: 270010
+          type: string
+          example: "270010"
         rate:
           type: number
           format: float
@@ -889,7 +889,7 @@ paths:
           in: path
           required: true
           schema:
-            type: integer
+            type: string
           description: Item ID
       responses:
         '200':
@@ -911,7 +911,7 @@ paths:
           in: path
           required: true
           schema:
-            type: integer
+            type: string
           description: Item ID
       requestBody:
         required: true
@@ -945,7 +945,7 @@ paths:
           in: path
           required: true
           schema:
-            type: integer
+            type: string
           description: Item ID
       responses:
         '200':

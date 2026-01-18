@@ -26,7 +26,7 @@ class ShowItemDbRepository implements ShowItemRepository
             $item->id,
             $item->name,
             $item->hsn_code,
-            new Money($item->amount,  new Currency($item->currency)),
+            new Money($item->rate,  new Currency($item->currency)),
             Date::fromString($item->created_at),
             Date::fromString($item->updated_at)
         );

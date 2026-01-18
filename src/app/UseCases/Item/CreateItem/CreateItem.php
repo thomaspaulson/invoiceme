@@ -10,7 +10,7 @@ class CreateItem
     public function __construct(
         private string $name,
         private string $hsnCode,
-        private float $amount,
+        private float $rate,
         private string $currency
     ) {
     }
@@ -26,9 +26,9 @@ class CreateItem
         return $this->hsnCode;
     }
 
-    public function amount(): float
+    public function rate(): float
     {
-        return $this->amount;
+        return $this->rate;
     }
 
     public function currency(): string
@@ -41,7 +41,7 @@ class CreateItem
         return new static(
             $data['name'],
             $data['hsn_code'],
-            (float)$data['amount'],
+            (float)$data['rate'],
             $data['currency'] ?? Currency::INR()->toString()
         );
     }

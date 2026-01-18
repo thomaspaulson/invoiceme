@@ -28,7 +28,7 @@ class CreateItemRequest extends FormRequest
             //
             'name' => ['required', 'string', 'max:155'],
             'hsn_code' => ['required', 'string', 'max:50'],
-            'amount' => ['required', 'numeric', 'min:0'],
+            'rate' => ['required', 'numeric', 'min:0'],
         ];
     }
 }

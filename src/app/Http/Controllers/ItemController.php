@@ -30,9 +30,14 @@ class ItemController extends Controller
 
     public function show(Request $request, $id, ShowItemService $showItemService)
     {
-        $item = $showItemService->show($id);
-
-        return response()->json($item->asArray());
+        try {
+            $item = $showItemService->show($id);
+            return response()->json($item->asArray());
+        } catch(\Domain\Models\Item\ItemNotFound $e){
+            return  response()->json([
+                'message' => 'Item not found'
+            ], 404);
+        }
     }
 
     public function store(CreateItemRequest $request, CreateItemService $createItemService)
@@ -47,18 +52,30 @@ class ItemController extends Controller
     public function update(UpdateItemRequest $request, $id, UpdateItemService $updateItemService)
     {
 
-        $updateItem = UpdateItem::fromRequestData($request->all());
-        $itemID = $updateItemService->update($updateItem, $id);
+        try {
+            $updateItem = UpdateItem::fromRequestData($request->all());
+            $itemID = $updateItemService->update($updateItem, $id);
 
-        return  response()->json(['itemID' => $itemID]);
+            return  response()->json(['itemID' => $itemID]);
+        } catch(\Domain\Models\Item\ItemNotFound $e){
+            return  response()->json([
+                'message' => 'Item not found'
+            ], 404);
+        }
 
     }
 
     public function destroy(Request $request, $id, DeleteItemService $deleteItemService)
     {
+        try {
+            $itemID = $deleteItemService->delete($id);
+            return response()->json(['itemID' => $itemID]);
+        } catch(\Domain\Models\Item\ItemNotFound $e){
+            return  response()->json([
+                'message' => 'Item not found'
+            ], 404);
+        }
 
-        $itemID = $deleteItemService->delete($id);
-        return response()->json(['itemID' => $itemID]);
     }
 
 }

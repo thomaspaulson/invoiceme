@@ -11,26 +11,26 @@ class Item
         private string $id,
         private string $name,
         private string $hsnCode,
-        private Money $rate,
+        private Money $price,
         private Date $createdAt,
         private Date $updatedAt
     ) {
     }
 
 
-    public function rate(): Money
+    public function price(): Money
     {
-        return $this->rate;
+        return $this->price;
     }
 
-    public function amount(): string
+    public function rate(): string
     {
-        return $this->rate()->digits();
+        return $this->price()->digits();
     }
 
     public function currency(): string
     {
-        return $this->rate()->currency()->toString();
+        return $this->price()->currency()->toString();
     }
 
     public function createdAt(): string
@@ -50,10 +50,10 @@ class Item
             'id' => $this->id,
             'name' => $this->name,
             'hsn_code' => $this->hsnCode,
-            'amount' => $this->amount(),
+            'rate' => $this->rate(),
             'currency' => $this->currency(),
-            'createdAt' => $this->createdAt(),
-            'updatedAt' => $this->updatedAt(),
+            'created_at' => $this->createdAt(),
+            'updated_at' => $this->updatedAt(),
         ];
     }
 }

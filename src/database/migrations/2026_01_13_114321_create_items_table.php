@@ -15,7 +15,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string('name', 155);
             $table->string('hsn_code', 50);
-            $table->decimal('amount', 15, 2);
+            $table->decimal('rate', 15, 2);
             $table->string('currency', 3);
             $table->timestamps();
         });

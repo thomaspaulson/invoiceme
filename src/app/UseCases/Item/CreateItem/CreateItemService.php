@@ -28,7 +28,7 @@ class CreateItemService
             $id,
             $createItem->name(),
             $createItem->hsnCode(),
-            $createItem->amount(),
+            $createItem->rate(),
             $createItem->currency(),
             $date,
             $date
