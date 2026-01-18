@@ -30,35 +30,47 @@ class ClientController extends Controller
 
     public function show(Request $request, $id, ShowClientService $showClientService)
     {
-        $client = $showClientService->show($id);
-
-        return response()->json($client->asArray());
+        try {
+            $client = $showClientService->show($id);
+            return response()->json($client->asArray());
+        } catch(\Domain\Models\Client\ClientNotFound $e){
+            return  response()->json([
+                'message' => 'Client not found'
+            ], 404);
+        }
     }
 
     public function store(CreateClientRequest $request, CreateClientService $createClientService)
     {
-
         $createClient = CreateClient::fromRequestData($request->all());
         $clientID = $createClientService->create($createClient);
-
-        return response()->json(['clientID' => $clientID]);
+        return response()->json(['client_id' => $clientID]);
     }
 
     public function update(UpdateClientRequest $request, $id, UpdateClientService $updateClientService)
     {
-
-        $updateClient = UpdateClient::fromRequestData($request->all());
-        $clientID = $updateClientService->update($updateClient, $id);
-
-        return  response()->json(['clientID' => $clientID]);
+        try {
+            $updateClient = UpdateClient::fromRequestData($request->all());
+            $clientID = $updateClientService->update($updateClient, $id);
+            return  response()->json(['client_id' => $clientID]);
+        } catch(\Domain\Models\Client\ClientNotFound $e){
+            return  response()->json([
+                'message' => 'Client not found'
+            ], 404);
+        }
 
     }
 
     public function destroy(Request $request, $id, DeleteClientService $deleteClientService)
     {
-
-        $clientID = $deleteClientService->delete($id);
-        return response()->json(['clientID' => $clientID]);
+        try {
+            $clientID = $deleteClientService->delete($id);
+            return response()->json(['client_id' => $clientID]);
+        } catch(\Domain\Models\Client\ClientNotFound $e){
+            return  response()->json([
+                'message' => 'Client not found'
+            ], 404);
+        }
     }
 
 }

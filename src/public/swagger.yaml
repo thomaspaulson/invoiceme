@@ -198,7 +198,7 @@ components:
         properties:
           id:
             type: string
-            example: 1
+            example: uuid
           company:
             type: string
             example: IDC Ltd
@@ -229,19 +229,25 @@ components:
       required:
         - name
       properties:
-        name:
-          type: string
-          example: John Doe
-        email:
-          type: string
-          format: email
-          example: john@example.com
-        phone:
-          type: string
-          example: +1234567890
-        address:
-          type: string
-          example: 456 Client Street
+          company:
+            type: string
+            example: IDC Ltd
+          firstName:
+            type: string
+            example: Doe
+          lastName:
+            type: string
+            example: Doe
+          email:
+            type: string
+            format: email
+            example: john@example.com
+          contact:
+            type: string
+            example: +1234567890
+          address:
+            type: string
+            example: 456 Client Street
     Item:
       type: object
       properties:
@@ -737,9 +743,9 @@ paths:
               schema:
                 type: object
                 properties:
-                  clientID:
-                    type: integer
-                    example: 1
+                  client_id:
+                    type: string
+                    example: uuid
         '422':
           description: Validation error
           content:
@@ -759,7 +765,7 @@ paths:
           in: path
           required: true
           schema:
-            type: integer
+            type: string
           description: Client ID
       responses:
         '200':
@@ -781,7 +787,7 @@ paths:
           in: path
           required: true
           schema:
-            type: integer
+            type: string
           description: Client ID
       requestBody:
         required: true
@@ -797,9 +803,9 @@ paths:
               schema:
                 type: object
                 properties:
-                  clientID:
-                    type: integer
-                    example: 1
+                  client_id:
+                    type: string
+                    example: uuid
         '404':
           description: Client not found
         '422':
@@ -815,7 +821,7 @@ paths:
           in: path
           required: true
           schema:
-            type: integer
+            type: string
           description: Client ID
       responses:
         '200':
@@ -825,9 +831,9 @@ paths:
               schema:
                 type: object
                 properties:
-                  clientID:
-                    type: integer
-                    example: 1
+                  client_id:
+                    type: string
+                    example: uuid
         '404':
           description: Client not found
 
@@ -867,8 +873,8 @@ paths:
               schema:
                 type: object
                 properties:
-                  itemID:
-                    type: integer
+                  item_id:
+                    type: string
                     example: 1
         '422':
           description: Validation error
@@ -927,8 +933,8 @@ paths:
               schema:
                 type: object
                 properties:
-                  itemID:
-                    type: integer
+                  item_id:
+                    type: string
                     example: 1
         '404':
           description: Item not found
@@ -955,8 +961,8 @@ paths:
               schema:
                 type: object
                 properties:
-                  itemID:
-                    type: integer
+                  item_id:
+                    type: string
                     example: 1
         '404':
           description: Item not found

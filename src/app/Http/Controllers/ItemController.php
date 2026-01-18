@@ -46,7 +46,7 @@ class ItemController extends Controller
         $createItem = CreateItem::fromRequestData($request->all());
         $itemID = $createItemService->create($createItem);
 
-        return response()->json(['itemID' => $itemID]);
+        return response()->json(['item_id' => $itemID]);
     }
 
     public function update(UpdateItemRequest $request, $id, UpdateItemService $updateItemService)
@@ -56,7 +56,7 @@ class ItemController extends Controller
             $updateItem = UpdateItem::fromRequestData($request->all());
             $itemID = $updateItemService->update($updateItem, $id);
 
-            return  response()->json(['itemID' => $itemID]);
+            return  response()->json(['item_id' => $itemID]);
         } catch(\Domain\Models\Item\ItemNotFound $e){
             return  response()->json([
                 'message' => 'Item not found'
@@ -69,7 +69,7 @@ class ItemController extends Controller
     {
         try {
             $itemID = $deleteItemService->delete($id);
-            return response()->json(['itemID' => $itemID]);
+            return response()->json(['item_id' => $itemID]);
         } catch(\Domain\Models\Item\ItemNotFound $e){
             return  response()->json([
                 'message' => 'Item not found'
