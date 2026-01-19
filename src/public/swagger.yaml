@@ -135,8 +135,9 @@ components:
       required:
         - name
         - address
-        - issue_date
-        - due_date
+        - gstin
+        - taxes
+        - items
       properties:
         name:
           type: string
@@ -171,15 +172,12 @@ components:
         id:
           type: string
           example: "uuid"
-        company:
+        name:
           type: string
           example: "IDC"
-        address:
-          type: string
-          example: "91 pretoria"
         hsn_code:
-          type: number
-          example: 270010
+          type: string
+          example: 27040030
         quantity:
           type: number
           example: 10
@@ -187,10 +185,6 @@ components:
           type: number
           format: float
           example: 100.00
-        tax:
-          type: number
-          format: float
-          example: 18.00
     Client:
       allOf:
       - $ref: '#/components/schemas/Vendor'
@@ -635,7 +629,7 @@ paths:
           in: path
           required: true
           schema:
-            type: integer
+            type: string
           description: Invoice ID
       responses:
         '200':
@@ -657,7 +651,7 @@ paths:
           in: path
           required: true
           schema:
-            type: integer
+            type: string
           description: Invoice ID
       requestBody:
         required: true
@@ -691,7 +685,7 @@ paths:
           in: path
           required: true
           schema:
-            type: integer
+            type: string
           description: Invoice ID
       responses:
         '200':

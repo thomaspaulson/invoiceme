@@ -44,7 +44,7 @@ class UpdateInvoiceRequest extends FormRequest
 
             'items.*.id' => [
                 'required',
-                'integer',
+                'string',
                 // 'exists:items,id',
                 // 'distinct',
             ],
@@ -58,10 +58,11 @@ class UpdateInvoiceRequest extends FormRequest
             'items.*.hsn_code' => [
                 'required',
                 'string',
+                'in:' . implode(',', array_keys(config('tax.hsncodes')))
                 // 'regex:/^[0-9]{4,8}$/',
             ],
 
-            'items.*.amount' => [
+            'items.*.rate' => [
                 'required',
                 'numeric',
                 'min:0',

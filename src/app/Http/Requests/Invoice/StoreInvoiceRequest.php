@@ -39,12 +39,13 @@ class StoreInvoiceRequest extends FormRequest
     }
 
     public function getItemsRule(){
+
         return [
             'items' => ['required', 'array', 'min:1'],
 
             'items.*.id' => [
                 'required',
-                'integer',
+                'string',
                 // 'exists:items,id',
                 // 'distinct',
             ],
@@ -58,10 +59,11 @@ class StoreInvoiceRequest extends FormRequest
             'items.*.hsn_code' => [
                 'required',
                 'string',
+                'in:' . implode(',', array_keys(config('tax.hsncodes'))),
                 // 'regex:/^[0-9]{4,8}$/',
             ],
 
-            'items.*.amount' => [
+            'items.*.rate' => [
                 'required',
                 'numeric',
                 'min:0',

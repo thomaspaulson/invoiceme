@@ -22,7 +22,7 @@ class InvoiceService {
             }
             $taxCode = $hsnCodes[$hsnCode];
             $tax = $taxCodes[$taxCode];
-            $unit = Money::fromFloat((float)$it['amount'], new Currency($it['currency'] ?? 'INR'));
+            $unit = Money::fromFloat((float)$it['rate'], new Currency($it['currency'] ?? 'INR'));
             $lineItems[] = new LineItem($it['id'], $it['name'], $hsnCode, $unit, (int)$it['quantity'], $tax);
         }
         return $lineItems;

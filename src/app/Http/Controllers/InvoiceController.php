@@ -28,28 +28,56 @@ class InvoiceController extends Controller
 
     public function show(Request $request, $id, ShowInvoiceService $showInvoiceService)
     {
-        $invoice = $showInvoiceService->show($id);
-        return response()->json($invoice->asArray());
+        try {
+            $invoice = $showInvoiceService->show($id);
+            return response()->json($invoice->asArray());
+        } catch(\Domain\Models\Invoice\InvoiceNotFound $e){
+            return  response()->json([
+                'message' => 'Invoice not found'
+            ], 404);
+        }
     }
 
     public function store(StoreInvoiceRequest $request, CreateInvoiceService $createInvoiceService)
     {
-        $createInvoice = CreateInvoice::fromRequestData($request->all());
-        $invoiceID = $createInvoiceService->create($createInvoice);
-        return response()->json(['invoiceID' => $invoiceID]);
+        try{
+            $createInvoice = CreateInvoice::fromRequestData($request->all());
+            $invoiceID = $createInvoiceService->create($createInvoice);
+            return response()->json(['invoice_id' => $invoiceID]);
+        }  catch(\Domain\Models\Invoice\InvalidHsnCode $e){
+            return response()->json([
+                'message' =>  $e->getMessage()
+            ], 400);
+        }
     }
 
     public function update(UpdateInvoiceRequest $request, $id, UpdateInvoiceService $updateInvoiceService)
     {
-        $updateInvoice = UpdateInvoice::fromRequestData($request->all());
-        $invoiceID = $updateInvoiceService->update($updateInvoice, $id);
-        return  response()->json(['invoiceID' => $invoiceID]);
+        try{
+            $updateInvoice = UpdateInvoice::fromRequestData($request->all());
+            $invoiceID = $updateInvoiceService->update($updateInvoice, $id);
+            return response()->json(['invoice_id' => $invoiceID]);
+        }  catch(\Domain\Models\Invoice\InvalidHsnCode $e){
+            return response()->json([
+                'message' =>  $e->getMessage()
+            ], 400);
+        } catch(\Domain\Models\Invoice\InvoiceNotFound $e){
+            return  response()->json([
+                'message' => 'Invoice not found'
+            ], 404);
+        }
     }
 
     public function destroy(Request $request, $id, DeleteInvoiceService $deleteInvoiceService)
     {
-        $invoiceID = $deleteInvoiceService->delete($id);
-        return response()->json(['invoiceID' => $invoiceID]);
+        try {
+            $invoiceID = $deleteInvoiceService->delete($id);
+            return response()->json(['invoice_id' => $invoiceID]);
+        } catch(\Domain\Models\Invoice\InvoiceNotFound $e){
+            return  response()->json([
+                'message' => 'Invoice not found'
+            ], 404);
+        }
     }
 
 }
